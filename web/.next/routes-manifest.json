@@ -1,0 +1,162 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "/partners",
+  "redirects": [
+    {
+      "source": "/partners/",
+      "destination": "/partners",
+      "basePath": false,
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^/partners/$"
+    },
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "dynamicRoutes": [
+    {
+      "page": "/api/[...path]",
+      "regex": "^/api/(.+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPpath": "nxtPpath"
+      },
+      "namedRegex": "^/api/(?<nxtPpath>.+?)(?:/)?$"
+    },
+    {
+      "page": "/[partner_slug]",
+      "regex": "^/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPpartner_slug": "nxtPpartner_slug"
+      },
+      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/[partner_slug]/help",
+      "regex": "^/([^/]+?)/help(?:/)?$",
+      "routeKeys": {
+        "nxtPpartner_slug": "nxtPpartner_slug"
+      },
+      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/help(?:/)?$"
+    },
+    {
+      "page": "/[partner_slug]/indices",
+      "regex": "^/([^/]+?)/indices(?:/)?$",
+      "routeKeys": {
+        "nxtPpartner_slug": "nxtPpartner_slug"
+      },
+      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/indices(?:/)?$"
+    },
+    {
+      "page": "/[partner_slug]/modelportfolio",
+      "regex": "^/([^/]+?)/modelportfolio(?:/)?$",
+      "routeKeys": {
+        "nxtPpartner_slug": "nxtPpartner_slug"
+      },
+      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/modelportfolio(?:/)?$"
+    },
+    {
+      "page": "/[partner_slug]/mynotes",
+      "regex": "^/([^/]+?)/mynotes(?:/)?$",
+      "routeKeys": {
+        "nxtPpartner_slug": "nxtPpartner_slug"
+      },
+      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/mynotes(?:/)?$"
+    },
+    {
+      "page": "/[partner_slug]/research",
+      "regex": "^/([^/]+?)/research(?:/)?$",
+      "routeKeys": {
+        "nxtPpartner_slug": "nxtPpartner_slug"
+      },
+      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/research(?:/)?$"
+    },
+    {
+      "page": "/[partner_slug]/stocks",
+      "regex": "^/([^/]+?)/stocks(?:/)?$",
+      "routeKeys": {
+        "nxtPpartner_slug": "nxtPpartner_slug"
+      },
+      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/stocks(?:/)?$"
+    },
+    {
+      "page": "/[partner_slug]/todayscase",
+      "regex": "^/([^/]+?)/todayscase(?:/)?$",
+      "routeKeys": {
+        "nxtPpartner_slug": "nxtPpartner_slug"
+      },
+      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/todayscase(?:/)?$"
+    },
+    {
+      "page": "/[partner_slug]/top50",
+      "regex": "^/([^/]+?)/top50(?:/)?$",
+      "routeKeys": {
+        "nxtPpartner_slug": "nxtPpartner_slug"
+      },
+      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/top50(?:/)?$"
+    },
+    {
+      "page": "/[partner_slug]/watchlist",
+      "regex": "^/([^/]+?)/watchlist(?:/)?$",
+      "routeKeys": {
+        "nxtPpartner_slug": "nxtPpartner_slug"
+      },
+      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/watchlist(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/docs",
+      "regex": "^/docs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  },
+  "rewrites": {
+    "beforeFiles": [
+      {
+        "source": "/partners//_next/:path+",
+        "destination": "/partners/_next/:path+",
+        "regex": "^/partners//_next(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))(?:/)?$"
+      }
+    ],
+    "afterFiles": [],
+    "fallback": []
+  }
+}

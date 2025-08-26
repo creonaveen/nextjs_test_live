@@ -1,0 +1,16 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/[...path]/route": "app/api/[...path]/route.js",
+  "/(demo_components)/docs/page": "app/(demo_components)/docs/page.js",
+  "/[partner_slug]/help/page": "app/[partner_slug]/help/page.js",
+  "/[partner_slug]/modelportfolio/page": "app/[partner_slug]/modelportfolio/page.js",
+  "/[partner_slug]/page": "app/[partner_slug]/page.js",
+  "/[partner_slug]/mynotes/page": "app/[partner_slug]/mynotes/page.js",
+  "/[partner_slug]/research/page": "app/[partner_slug]/research/page.js",
+  "/[partner_slug]/indices/page": "app/[partner_slug]/indices/page.js",
+  "/[partner_slug]/stocks/page": "app/[partner_slug]/stocks/page.js",
+  "/[partner_slug]/todayscase/page": "app/[partner_slug]/todayscase/page.js",
+  "/[partner_slug]/top50/page": "app/[partner_slug]/top50/page.js",
+  "/[partner_slug]/watchlist/page": "app/[partner_slug]/watchlist/page.js"
+}
