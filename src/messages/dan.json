@@ -1,0 +1,95 @@
+{
+  "common": {
+    "welcome": "Velkommen",
+    "home": "Hjem",
+    "about": "Om",
+    "contact": "Kontakt",
+    "searchPlaceholder": "Søg virksomhed",
+    "theme": "Tema",
+    "name": "Navn",
+    "close": "Seneste slutkurs",
+    "change": "Ændring",
+    "analysisDate": "Analysedato",
+    "all": "Alle",
+    "rowsPerPage": "Rækker per side",
+    "of": "af",
+    "score": "Score",
+    "price": "Kurs",
+    "allCandidates": "Alle kandidater",
+    "timeSpan": "Tidsperiode",
+    "buyCandidates": "Købs-kandidater",
+    "sellCandidates": "Salgs-kandidater",
+    "mediumTerm": "Mellemlang sikt",
+    "longTerm": "Lang sikt"
+  },
+  "navigation": {
+    "myPages": "Mine sider",
+    "myAssessments": "Mine vurderinger",
+    "watchlist": "Overvågningsliste",
+    "myPortfolios": "Mine porteføljer",
+    "myNotes": "Mine noter",
+    "myAlerts": "Mine alarmer",
+    "universes": "Universer",
+    "market": "Marked",
+    "recommendations": "Anbefalinger",
+    "morningReport": "Morgenrapport",
+    "todaysCase": "Dagens case",
+    "modelPortfolio": "Modelportefølje",
+    "tradingIdeas": "Handelsidéer",
+    "stayAwayPortfolio": "Hold-dig-væk-portefølje",
+    "stockPicking": "Aktieudvælgelse",
+    "top50": "Top 50",
+    "insideTrades": "Insiderhandler",
+    "stockpicking": "Aktieudvælgelse",
+    "specialLists": "Speciallister",
+    "researchAndLearn": "Analyser og lær",
+    "userTips": "Brugertips",
+    "investtechResearch": "Investtech-analyser",
+    "newsArchive": "Nyhedsarkiv",
+    "webinarAndVideoArchive": "Webinar- og videoarkiv",
+    "scheduledWebinars": "Planlagte webinarer og seminarer",
+    "dev": "Dev",
+    "aboutAnalyses": "Om analyser",
+    "healthCheckExample": "Sundhedstjek-eksempel",
+    "wordpressGuide": "WordPress-guide",
+    "wordpressTest": "WordPress-test",
+    "stocks": "Aktier",
+    "indices": "Indekser",
+    "research": "Analyse",
+    "help": "Hjælp"
+  },
+  "errors": {
+    "notFound": "Siden blev ikke fundet",
+    "serverError": "Der opstod en serverfejl",
+    "unauthorized": "Uautoriseret adgang",
+    "noData": "ngen data tilgængelig"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Tilmeld dig nyhedsbrevet her",
+      "description": "Gratis e-mail nyhedsbrev hver dag før børsen åbner",
+      "placeholder": "Din e-mail...",
+      "button": "Tilmeld"
+    },
+    "headOffice": {
+      "title": "HOVEDKONTOR",
+      "address": "Strandvejen 17\n1366 Lysaker, Norge"
+    },
+    "researchDepartment": {
+      "title": "ANALYSEAFDELING",
+      "address": "Instituttveien 10\n2007 Kjeller, Norge"
+    },
+    "contactUs": {
+      "title": "KONTAKT OS",
+      "phone": "+47 21 55 58 88",
+      "email": "info@investtech.com"
+    },
+    "followUs": {
+      "title": "FØLG OS",
+      "youtube": "YouTube",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
+  }
+}

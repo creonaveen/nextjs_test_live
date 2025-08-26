@@ -1,0 +1,95 @@
+{
+  "common": {
+    "welcome": "Välkommen",
+    "home": "Hem",
+    "about": "Om",
+    "contact": "Kontakt",
+    "searchPlaceholder": "Sök företag",
+    "theme": "Tema",
+    "name": "Namn",
+    "close": "Senaste slutkurs",
+    "change": "Ändring",
+    "analysisDate": "Analysdatum",
+    "all": "Alla",
+    "rowsPerPage": "Rader per sida",
+    "of": "av",
+    "score": "Score",
+    "price": "Kurs",
+    "allCandidates": "Alla kandidater",
+    "timeSpan": "Tidsintervall",
+    "buyCandidates": "Köpkandidater",
+    "sellCandidates": "Sälj-kandidater",
+    "mediumTerm": "Medellång sikt",
+    "longTerm": "Lång sikt"
+  },
+  "navigation": {
+    "myPages": "Mina sidor",
+    "myAssessments": "Mina bedömningar",
+    "watchlist": "Bevakningslista",
+    "myPortfolios": "Mina portföljer",
+    "myNotes": "Mina anteckningar",
+    "myAlerts": "Mina aviseringar",
+    "universes": "Universer",
+    "market": "Marknad",
+    "recommendations": "Rekommendationer",
+    "morningReport": "Morgonrapport",
+    "todaysCase": "Dagens case",
+    "modelPortfolio": "Modelportfölj",
+    "tradingIdeas": "Handelsidéer",
+    "stayAwayPortfolio": "Håll dig borta-portfölj",
+    "stockPicking": "Aktieurval",
+    "top50": "Topp 50",
+    "insideTrades": "Insideraffärer",
+    "stockpicking": "Aktieurval",
+    "specialLists": "Speciallistor",
+    "researchAndLearn": "Analysera och lär",
+    "userTips": "Användartips",
+    "investtechResearch": "Investtech-analyser",
+    "newsArchive": "Nyhetsarkiv",
+    "webinarAndVideoArchive": "Webbinarie- och videoarkiv",
+    "scheduledWebinars": "Planerade webbinarier och seminarier",
+    "dev": "Dev",
+    "aboutAnalyses": "Om analyser",
+    "healthCheckExample": "Hälsokontroll-exempel",
+    "wordpressGuide": "WordPress-guide",
+    "wordpressTest": "WordPress-test",
+    "stocks": "Aktier",
+    "indices": "Index",
+    "research": "Analys",
+    "help": "Hjälp"
+  },
+  "errors": {
+    "notFound": "Sidan hittades inte",
+    "serverError": "Serverfel uppstod",
+    "unauthorized": "Obehörig åtkomst",
+    "noData": "Inga data tillgängliga"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Prenumerera på nyhetsbrev här",
+      "description": "Gratis e-postnyhetsbrev varje dag innan börsen öppnar",
+      "placeholder": "Din e-post...",
+      "button": "Registrera dig"
+    },
+    "headOffice": {
+      "title": "HUVUDKONTOR",
+      "address": "Strandveien 17\n1366 Lysaker, Norge"
+    },
+    "researchDepartment": {
+      "title": "ANALYSAVDELNING",
+      "address": "Instituttveien 10\n2007 Kjeller, Norge"
+    },
+    "contactUs": {
+      "title": "KONTAKTA OSS",
+      "phone": "+47 21 55 58 88",
+      "email": "info@investtech.com"
+    },
+    "followUs": {
+      "title": "FÖLJ OSS",
+      "youtube": "YouTube",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
+  }
+}

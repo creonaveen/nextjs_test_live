@@ -1,0 +1,95 @@
+{
+  "common": {
+    "welcome": "Tervetuloa",
+    "home": "Etusivu",
+    "about": "Tietoa",
+    "contact": "Yhteystiedot",
+    "searchPlaceholder": "Hae yritystä",
+    "theme": "Teema",
+    "name": "Nimi",
+    "close": "Viimeinen päätöskurssi",
+    "change": "Muutos",
+    "analysisDate": "Analyysipäivämäärä",
+    "all": "Kaikki",
+    "rowsPerPage": "Rivejä per sivu",
+    "of": "yhteensä",
+    "score": "Pistesumma",
+    "price": "Kurssi",
+    "allCandidates": "Kaikki kandidaatit",
+    "timeSpan": "Aikaväli",
+    "buyCandidates": "Ostokandidaatit",
+    "sellCandidates": "Myyntikandidaatit",
+    "mediumTerm": "Keskipitkä aikaväli",
+    "longTerm": "Pitkä aikaväli"
+  },
+  "navigation": {
+    "myPages": "Omat sivut",
+    "myAssessments": "Omat arviot",
+    "watchlist": "Seurantalista",
+    "myPortfolios": "Omat salkut",
+    "myNotes": "Omat muistiinpanot",
+    "myAlerts": "Omat hälytykset",
+    "universes": "Universumit",
+    "market": "Markkina",
+    "recommendations": "Suositukset",
+    "morningReport": "Aamuraportti",
+    "todaysCase": "Päivän tapaus",
+    "modelPortfolio": "Mallisalkku",
+    "tradingIdeas": "Kauppaideat",
+    "stayAwayPortfolio": "Vältä-salkku",
+    "stockPicking": "Osakepoiminta",
+    "top50": "Top 50",
+    "insideTrades": "Sisäpiirikaupat",
+    "stockpicking": "Osakepoiminta",
+    "specialLists": "Erikoislistat",
+    "researchAndLearn": "Tutki ja opi",
+    "userTips": "Käyttäjävinkit",
+    "investtechResearch": "Investtech-analyysit",
+    "newsArchive": "Uutisarkisto",
+    "webinarAndVideoArchive": "Webinaari- ja videoarkisto",
+    "scheduledWebinars": "Suunnitellut webinaarit ja seminaarit",
+    "dev": "Dev",
+    "aboutAnalyses": "Tietoa analyyseistä",
+    "healthCheckExample": "Tarkistusesimerkki",
+    "wordpressGuide": "WordPress-opas",
+    "wordpressTest": "WordPress-testi",
+    "stocks": "Osakkeet",
+    "indices": "Indeksit",
+    "research": "Analyysi",
+    "help": "Ohje"
+  },
+  "errors": {
+    "notFound": "Sivua ei löytynyt",
+    "serverError": "Palvelinvirhe tapahtui",
+    "unauthorized": "Luvaton käyttö",
+    "noData": "Ei dataa saatavilla"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Tilaa uutiskirje tästä",
+      "description": "Ilmainen sähköposti-uutiskirje joka päivä ennen pörssin avaamista",
+      "placeholder": "Sähköpostisi...",
+      "button": "Tilaa"
+    },
+    "headOffice": {
+      "title": "PÄÄKONTTORI",
+      "address": "Strandveien 17\n1366 Lysaker, Norja"
+    },
+    "researchDepartment": {
+      "title": "ANALYSIOSASTO",
+      "address": "Instituttveien 10\n2007 Kjeller, Norja"
+    },
+    "contactUs": {
+      "title": "OTA YHTEYTTÄ",
+      "phone": "+47 21 55 58 88",
+      "email": "info@investtech.com"
+    },
+    "followUs": {
+      "title": "SEURAA MEITÄ",
+      "youtube": "YouTube",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
+  }
+}
