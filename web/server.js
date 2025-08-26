@@ -3,6 +3,7 @@ const path = require('path')
 const dir = path.join(__dirname)
 
 process.env.NODE_ENV = 'production'
+process.env.HOSTNAME = 'localhost'
 process.chdir(__dirname)
 
 const currentPort = parseInt(process.env.PORT, 10) || 3000
