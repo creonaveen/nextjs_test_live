@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   basePath: getBasePath(),
   serverExternalPackages: ['react-hook-form'],
+  transpilePackages: ['investtech'],
+  turbopack: {
+    resolveAlias: {
+      tailwindcss: './node_modules/tailwindcss',
+    },
+  },
   // Test files are excluded via tsconfig.json
   // Additional cleanup happens in build.sh
   images: {
