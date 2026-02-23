@@ -6,6 +6,7 @@ import { configuration } from './src/environment/configuration';
 const nextConfig: NextConfig = {
   devIndicators: false,
   output: 'standalone',
+  basePath: '/web',
   serverExternalPackages: ['react-hook-form'],
   transpilePackages: ['investtech'],
   turbopack: {
