@@ -1,0 +1,20 @@
+{
+  "/(demo_components)/docs/page": "/docs",
+  "/(demo_components)/docs/table/page": "/docs/table",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/company/[id]/page": "/company/[id]",
+  "/docs/[slug]/page": "/docs/[slug]",
+  "/favicon.ico/route": "/favicon.ico",
+  "/healthcheck/page": "/healthcheck",
+  "/indices/page": "/indices",
+  "/marketcommentary/page": "/marketcommentary",
+  "/modelportfolio/page": "/modelportfolio",
+  "/mynotes/page": "/mynotes",
+  "/page": "/",
+  "/session_expiry/page": "/session_expiry",
+  "/stocks/page": "/stocks",
+  "/todayscase/page": "/todayscase",
+  "/top50/page": "/top50",
+  "/watchlist/page": "/watchlist"
+}

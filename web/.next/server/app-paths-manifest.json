@@ -1,0 +1,20 @@
+{
+  "/(demo_components)/docs/page": "app/(demo_components)/docs/page.js",
+  "/(demo_components)/docs/table/page": "app/(demo_components)/docs/table/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/company/[id]/page": "app/company/[id]/page.js",
+  "/docs/[slug]/page": "app/docs/[slug]/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/healthcheck/page": "app/healthcheck/page.js",
+  "/indices/page": "app/indices/page.js",
+  "/marketcommentary/page": "app/marketcommentary/page.js",
+  "/modelportfolio/page": "app/modelportfolio/page.js",
+  "/mynotes/page": "app/mynotes/page.js",
+  "/page": "app/page.js",
+  "/session_expiry/page": "app/session_expiry/page.js",
+  "/stocks/page": "app/stocks/page.js",
+  "/todayscase/page": "app/todayscase/page.js",
+  "/top50/page": "app/top50/page.js",
+  "/watchlist/page": "app/watchlist/page.js"
+}

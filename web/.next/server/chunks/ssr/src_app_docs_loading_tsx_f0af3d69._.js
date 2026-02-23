@@ -1,0 +1,3 @@
+module.exports=[65846,a=>a.a(async(b,c)=>{try{var d=a.i(87924),e=a.i(90887),f=b([e]);function g(){return(0,d.jsxs)("div",{className:"flex flex-1 items-start justify-center gap-4 lg:gap-6",children:[(0,d.jsx)(e.Skeleton,{className:"h-[80vh] w-full md:w-3/4"}),(0,d.jsx)(e.Skeleton,{className:"hidden h-[60vh] w-1/4 md:block"})]})}[e]=f.then?(await f)():f,a.s(["default",()=>g]),c()}catch(a){c(a)}},!1)];
+
+//# sourceMappingURL=src_app_docs_loading_tsx_f0af3d69._.js.map
