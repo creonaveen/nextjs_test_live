@@ -3,17 +3,8 @@
   "pages404": true,
   "appType": "app",
   "caseSensitive": false,
-  "basePath": "/web",
+  "basePath": "",
   "redirects": [
-    {
-      "source": "/web/",
-      "destination": "/web",
-      "basePath": false,
-      "internal": true,
-      "priority": true,
-      "statusCode": 308,
-      "regex": "^/web/$"
-    },
     {
       "source": "/:path+/",
       "destination": "/:path+",
@@ -25,7 +16,7 @@
   ],
   "headers": [
     {
-      "source": "/web/:path*",
+      "source": "/:path*",
       "headers": [
         {
           "key": "X-DNS-Prefetch-Control",
@@ -60,7 +51,7 @@
           "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self';"
         }
       ],
-      "regex": "^/web(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
     }
   ],
   "rewrites": {
