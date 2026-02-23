@@ -1,6 +1,4 @@
-'use client';
-
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from 'investtech/external-components';
 
 export function AlertDemo() {
   return (
@@ -11,7 +9,7 @@ export function AlertDemo() {
   );
 }
 
-export const alertExampleCode = `import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+export const alertExampleCode = `import { Alert, AlertDescription, AlertTitle } from "@/components/external-components/alert"
 
 // Basic Alert
 <Alert>

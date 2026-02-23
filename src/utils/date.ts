@@ -1,5 +1,7 @@
 import { format, parseISO, parse, isValid } from 'date-fns';
 
+import logger from './logger';
+
 /**
  * Formats a Date object to 'yyyy-MM-dd' string.
  * @param date Date object
@@ -13,6 +15,10 @@ export function dateToDB(date?: Date | null): string {
 /**
  * Formats a date string (or Date object) to 'dd-MMM-yyyy' (e.g., 05-May-2025)
  * Returns empty string for invalid input.
+ *
+ * NOTE: This function uses a fixed format. For locale-aware formatting,
+ * use dateToDisplayLocaleAware from date-locale.ts
+ *
  * @param value string or Date
  * @returns formatted date string
  */
@@ -44,6 +50,19 @@ export const getCurrentDate = (formatString = 'yyyy-MM-dd') => {
   }
 };
 
+function parseDateFromString(dateInput: string): Date {
+  if (/^\d{4}-\d{2}-\d{2}([T ].*)?$/.test(dateInput)) {
+    const isoDate = parseISO(dateInput);
+    if (isValid(isoDate)) return isoDate;
+  }
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateInput)) {
+    const safariDate = new Date(dateInput.replace(/-/g, '/'));
+    if (isValid(safariDate)) return safariDate;
+  }
+  const parsed = parse(dateInput, 'yyyy-MM-dd', new Date());
+  return isValid(parsed) ? parsed : new Date();
+}
+
 /**
  * Parses a date input (string, number, or Date) to a Date object.
  * Returns new Date() for invalid input.
@@ -51,24 +70,8 @@ export const getCurrentDate = (formatString = 'yyyy-MM-dd') => {
  * @returns Date object
  */
 export const parseDate = (dateInput: string | number | Date): Date => {
-  if (dateInput instanceof Date) {
-    return isValid(dateInput) ? dateInput : new Date();
-  }
-  if (typeof dateInput === 'string') {
-    // Handle ISO strings (e.g., 2024-06-01T00:00:00Z)
-    if (/^\d{4}-\d{2}-\d{2}([T ].*)?$/.test(dateInput)) {
-      const isoDate = parseISO(dateInput);
-      if (isValid(isoDate)) return isoDate;
-    }
-    // Handle yyyy-MM-dd (Safari fix: replace '-' with '/')
-    if (/^\d{4}-\d{2}-\d{2}$/.test(dateInput)) {
-      const safariDate = new Date(dateInput.replace(/-/g, '/'));
-      if (isValid(safariDate)) return safariDate;
-    }
-    // Fallback: try parsing with date-fns parse
-    const parsed = parse(dateInput, 'yyyy-MM-dd', new Date());
-    return isValid(parsed) ? parsed : new Date();
-  }
+  if (dateInput instanceof Date) return isValid(dateInput) ? dateInput : new Date();
+  if (typeof dateInput === 'string') return parseDateFromString(dateInput);
   if (typeof dateInput === 'number') {
     const date = new Date(dateInput);
     return isValid(date) ? date : new Date();
@@ -119,7 +122,7 @@ export function dateToISOString(date?: Date | null): string {
     // Return the ISO string (includes time in UTC)
     return adjustedDate.toISOString();
   } catch (error) {
-    console.error('Error formatting date to ISO string:', error);
+    logger.error('Error formatting date to ISO string', error);
     return '';
   }
 }
@@ -150,9 +153,39 @@ export function dateToISOStringWithTime(date?: Date | null): string {
 
     return utcDate.toISOString();
   } catch (error) {
-    console.error('Error formatting date to ISO string with time:', error);
+    logger.error('Error formatting date to ISO string with time', error);
     return '';
   }
+}
+
+function isValidTimeRange(h: number, m: number, s: number): boolean {
+  return (
+    h >= 0 &&
+    h <= 23 &&
+    m >= 0 &&
+    m <= 59 &&
+    s >= 0 &&
+    s <= 59 &&
+    !isNaN(h) &&
+    !isNaN(m) &&
+    !isNaN(s)
+  );
+}
+
+function parseAndValidateTime(timeString: string): { h: number; m: number; s: number } | undefined {
+  const timeParts = timeString.split(':');
+  if (timeParts.length < 2 || timeParts.length > 3) {
+    logger.error('Invalid time format. Expected HH:MM or HH:MM:SS');
+    return undefined;
+  }
+  const h = parseInt(timeParts[0], 10);
+  const m = parseInt(timeParts[1], 10);
+  const s = timeParts[2] ? parseInt(timeParts[2], 10) : 0;
+  if (!isValidTimeRange(h, m, s)) {
+    logger.error('Invalid time values');
+    return undefined;
+  }
+  return { h, m, s };
 }
 
 /**
@@ -163,58 +196,34 @@ export function dateToISOStringWithTime(date?: Date | null): string {
  * @returns Combined Date object or undefined if invalid
  */
 export function combineDateAndTime(date?: Date | null, timeString?: string): Date | undefined {
-  if (!date || !(date instanceof Date) || isNaN(date.getTime()) || !timeString) {
-    return undefined;
-  }
-
+  if (!date || !(date instanceof Date) || isNaN(date.getTime()) || !timeString) return undefined;
   try {
-    // Parse time string (HH:MM:SS or HH:MM)
-    const timeParts = timeString.split(':');
-    if (timeParts.length < 2 || timeParts.length > 3) {
-      console.error('Invalid time format. Expected HH:MM or HH:MM:SS');
-      return undefined;
-    }
-
-    const hours = parseInt(timeParts[0], 10);
-    const minutes = parseInt(timeParts[1], 10);
-    const seconds = timeParts[2] ? parseInt(timeParts[2], 10) : 0;
-
-    // Validate time components
-    if (
-      isNaN(hours) ||
-      isNaN(minutes) ||
-      isNaN(seconds) ||
-      hours < 0 ||
-      hours > 23 ||
-      minutes < 0 ||
-      minutes > 59 ||
-      seconds < 0 ||
-      seconds > 59
-    ) {
-      console.error('Invalid time values');
-      return undefined;
-    }
-
-    // Create a new date object to avoid mutating the original
+    const time = parseAndValidateTime(timeString);
+    if (!time) return undefined;
     const combinedDate = new Date(date.getTime());
-
-    // Set the time components
-    combinedDate.setHours(hours, minutes, seconds, 0);
-
-    // Validate the resulting date
+    combinedDate.setHours(time.h, time.m, time.s, 0);
     if (isNaN(combinedDate.getTime())) {
-      console.error('Invalid date after combining date and time');
+      logger.error('Invalid date after combining date and time');
       return undefined;
     }
-
     return combinedDate;
   } catch (error) {
-    console.error('Error combining date and time:', error);
+    logger.error('Error combining date and time', error);
     return undefined;
   }
 }
 
-//Example output: "14 August 2025 – 10:50 AM"
+/**
+ * Formats date and time using locale-aware formatting
+ *
+ * @deprecated Use date-locale.ts functions for locale-aware formatting
+ * This function uses hardcoded 'en-GB' and 'en-US' locales
+ *
+ * Example output: "14 August 2025 – 10:50 AM"
+ *
+ * @param dateString - ISO date string
+ * @returns Formatted date and time string
+ */
 export function getDateAndTime(dateString: string) {
   const date = new Date(dateString);
 
@@ -250,3 +259,23 @@ export function getDateAndTime(dateString: string) {
 //     return '';
 //   }
 // }
+
+//Example output: "2025-08-14"
+export function getDate(dateTimeString: string): string | null {
+  try {
+    if (!dateTimeString) throw new Error('Invalid input');
+
+    // Parse into Date object
+    const date = new Date(dateTimeString.replace(' ', 'T')); // replace for ISO compatibility
+
+    if (isNaN(date.getTime())) {
+      throw new Error('Invalid date format');
+    }
+
+    // Return YYYY-MM-DD
+    return date.toISOString().split('T')[0];
+  } catch (error) {
+    logger.error('Error parsing date', error);
+    return null;
+  }
+}

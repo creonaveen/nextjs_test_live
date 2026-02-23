@@ -5,57 +5,62 @@ import { PlatformType } from './server-platform';
 
 // Client-side detection using media queries
 export const getClientPlatform = (): PlatformType => {
-  if (typeof window === 'undefined') {
-    return 'desktop';
+  if (typeof window === 'undefined') return 'desktop';
+
+  const width = window.innerWidth;
+
+  // ---- Detect iPad (portrait or landscape) ----
+  const isIpad = /iPad|Macintosh/.test(navigator.userAgent) && 'ontouchstart' in window;
+
+  if (isIpad) {
+    if (width <= 767) return 'mobile';
+    return 'tablet'; // All iPad sizes including Pro
   }
 
-  if (window.matchMedia('(max-width: 767px)').matches) {
-    return 'mobile';
-  } else if (window.matchMedia('(min-width: 768px) and (max-width: 1023px)').matches) {
-    return 'tablet';
-  }
-  return 'desktop';
+  // ---- Non-iPad devices ----
+  if (width > 1023) return 'desktop';
+  if (width < 768) return 'mobile';
+  return 'tablet'; // small laptops, foldables, etc.
 };
 
-// Hook for React components
 export const usePlatform = (initialPlatform: PlatformType = 'desktop') => {
   const [platform, setPlatform] = React.useState<PlatformType>(initialPlatform);
 
   React.useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const currentPlatform = getClientPlatform();
-    setPlatform(currentPlatform);
+    const updatePlatform = () => {
+      setPlatform(getClientPlatform());
+    };
 
-    // Create media query lists
+    // Initial run
+    updatePlatform();
+
+    // Media queries
+    const touchQuery = window.matchMedia('(pointer: coarse)');
     const mobileQuery = window.matchMedia('(max-width: 767px)');
     const tabletQuery = window.matchMedia('(min-width: 768px) and (max-width: 1023px)');
     const desktopQuery = window.matchMedia('(min-width: 1024px)');
 
-    const handleMediaChange = () => {
-      let newPlatform: PlatformType;
-      if (mobileQuery.matches) {
-        newPlatform = 'mobile';
-      } else if (tabletQuery.matches) {
-        newPlatform = 'tablet';
-      } else if (desktopQuery.matches) {
-        newPlatform = 'desktop';
-      } else {
-        newPlatform = 'desktop';
-      }
-      setPlatform(newPlatform);
-    };
+    const listener = () => updatePlatform();
 
-    // Add listeners for media query changes
-    mobileQuery.addEventListener('change', handleMediaChange);
-    tabletQuery.addEventListener('change', handleMediaChange);
-    desktopQuery.addEventListener('change', handleMediaChange);
+    // Listen to major changes
+    touchQuery.addEventListener('change', listener);
+    mobileQuery.addEventListener('change', listener);
+    tabletQuery.addEventListener('change', listener);
+    desktopQuery.addEventListener('change', listener);
 
-    // Cleanup listeners
+    // Detect orientation & width change instantly
+    window.addEventListener('resize', listener);
+    window.addEventListener('orientationchange', listener);
+
     return () => {
-      mobileQuery.removeEventListener('change', handleMediaChange);
-      tabletQuery.removeEventListener('change', handleMediaChange);
-      desktopQuery.removeEventListener('change', handleMediaChange);
+      touchQuery.removeEventListener('change', listener);
+      mobileQuery.removeEventListener('change', listener);
+      tabletQuery.removeEventListener('change', listener);
+      desktopQuery.removeEventListener('change', listener);
+      window.removeEventListener('resize', listener);
+      window.removeEventListener('orientationchange', listener);
     };
   }, []);
   return platform;

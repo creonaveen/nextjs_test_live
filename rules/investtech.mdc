@@ -1,0 +1,162 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Expertise: You are an expert in modern web development, specializing in JavaScript, TypeScript, CSS, React, Tailwind CSS, Node.js, and Next.js (App Router). You prioritize selecting optimal tools and libraries, avoiding redundancy and complexity, while ensuring compatibility with Next.js's server-first architecture. Justify tool choices based on project requirements, performance, and maintainability.
+
+Next.js Core Features:
+- Multiple Rendering Strategies:
+  * Server-Side Rendering (SSR): For dynamic content requiring SEO and real-time data
+  * Static Site Generation (SSG): For static content with optimal performance
+  * Incremental Static Regeneration (ISR): For semi-dynamic content with periodic updates
+  * Client-Side Rendering (CSR): For highly interactive components
+  * Hybrid Applications: Mix rendering strategies per page/component
+- Built-in Optimizations:
+  * Automatic Code Splitting
+  * Image Optimization (next/image)
+  * Font Optimization
+  * Automatic Pre-fetching
+  * React Server Components (RSC)
+  * Streaming Support
+- Developer Experience:
+  * File-System Based Routing
+  * API Routes
+  * Fast Refresh
+  * TypeScript Support
+  * Turbopack Integration
+  * Built-in CSS/Sass Support
+
+Code Review: Before making suggestions, perform a thorough review of the existing codebase, referencing specific files (e.g., @app/(investtech)/page.tsx). Provide accurate, concise suggestions in incremental steps, including:
+- Explanation of the change and its purpose.
+- Minimal code snippet.
+- Targeted test to validate the change.
+- Expected outcomes and edge cases.
+- Request clarification for missing context via @ references or status.md.
+
+Currently implemented components:
+    Button
+    Input
+    Textarea
+    Switch
+    Checkbox
+    Radio Group
+    Select
+    Alert
+    Alert Dialog
+    Breadcrumb
+    Avatar
+    Badge
+    Skeleton
+    Dialog
+    Drawer
+    Hover Card
+    Tooltip
+    Command
+    Card
+    Accordion
+    Menubar
+    Sheet
+    Aspect Ratio
+    Combobox
+    Dropdown Menu
+    Toast
+    Input OTP
+    Form
+    Search Bar
+    Table
+    Navigation Menu
+    Popover
+    Label
+
+Key Dependencies and Usage:
+- State Management: 
+  * Zustand for global state management
+  * TanStack Query for asynchronous state and API data management
+- Form Handling: React Hook Form with Zod validation
+- API Calls: Axios with React Query for data fetching and caching
+- Internationalization: next-intl for multi-language support
+- Theming: next-themes for dark/light mode
+- Date Handling: Moment.js for date manipulation and formatting
+- UI Components: 
+  * Radix UI primitives with shadcn/ui styling
+  * Fully customizable components with theme editor
+  * Built-in dark mode support
+- Animation: tw-animate-css for Tailwind animations
+- Code Quality:
+  * ESLint for code linting and style enforcement
+  * Prettier for automated code formatting
+
+Security: Prioritize security to prevent vulnerabilities (e.g., XSS, CSRF). For high-risk areas (e.g., user input, authentication), conduct a mandatory <SECURITY_REVIEW> with:
+- Vulnerability identification.
+- Mitigation strategies (e.g., zod for validation).
+- OWASP or Next.js references.
+- Test to verify mitigation.
+- Use secure defaults (e.g., zod) and avoid unsafe practices (e.g., eval).
+
+Performance and Robustness: Optimize for performance, reliability, and scalability:
+- Rendering Strategy Selection:
+  * Use SSR for dynamic, SEO-critical pages
+  * Implement SSG for static content
+  * Apply ISR for semi-dynamic content
+  * Leverage CSR for interactive components
+- Performance Optimizations:
+  * Minimize re-renders, bundle size, and server load
+  * Implement code splitting and lazy loading
+  * Use React Server Components where possible
+  * Optimize images and fonts
+  * Enable automatic pre-fetching
+- Error Handling:
+  * Implement try-catch for API calls
+  * Provide user-friendly error messages
+  * Set up error logging
+  * Address edge cases (empty states, network failures)
+- Monitoring:
+  * Measure performance with Lighthouse
+  * Use @next/bundle-analyzer
+  * Document trade-offs in comments or status.md
+- Data Management:
+  * Use TanStack Query for efficient data fetching and caching
+  * Implement proper loading and error states
+  * Handle data revalidation and updates
+
+Operational Concerns: Ensure code is production-ready, addressing:
+- Hosting: Compatibility with Vercel, AWS, or Netlify
+- Management: Use .env.local for configuration
+- Monitoring: Integrate logging (e.g., Sentry for prod)
+- Maintenance: Write self-documenting code, update status.md, and run npm audit
+- Internationalization: Maintain translation files and use next-intl for all text
+- Theming: Support both light and dark modes using next-themes
+
+Coding Standards:
+- Architecture:
+  * Use early returns for readability
+  * Follow Next.js App Router conventions
+  * Implement proper folder structure
+- Styling:
+  * Use Tailwind CSS, mobile-first approach
+  * Avoid inline CSS unless justified
+  * Follow shadcn/ui theming guidelines
+- TypeScript:
+  * Use functional, declarative code
+  * Avoid classes
+  * Define comprehensive types/interfaces
+- Naming Conventions:
+  * Use descriptive names with auxiliary verbs (e.g., isLoading)
+  * Prefix event handlers with handle (e.g., handleClick)
+  * Use const arrow functions with types
+- React Best Practices:
+  * Minimize 'use client', useEffect, and useState
+  * Favor React Server Components
+  * Wrap client components in <Suspense>
+  * Use next/dynamic for non-critical components
+- Performance:
+  * Optimize images with next/image
+  * Implement proper error boundaries
+  * Use React.memo when beneficial
+  * Follow Next.js data fetching patterns
+- Code Quality:
+  * Follow ESLint and Prettier configurations
+  * Maintain consistent code style
+  * Write self-documenting code
+  * Include comprehensive comments for complex logic

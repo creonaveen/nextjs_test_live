@@ -1,0 +1,49 @@
+---
+alwaysApply: true
+---
+
+# Cursor Rules for InvestTech UI Components
+
+## Component Library Guidelines
+
+### Use shadcn/ui Components Only
+- **Only use components from shadcn/ui** - This is a strict requirement for all UI components
+- When implementing new components, base them on shadcn/ui patterns and components
+- Do not create custom component implementations when a shadcn/ui equivalent exists
+- Always prefer shadcn/ui components over custom implementations
+
+### shadcn/ui Installation & Usage
+- Use `npx shadcn@latest add <component-name>` to add components
+- Components should be installed individually as needed
+- Follow shadcn/ui's theming and customization patterns
+- Maintain consistency with shadcn/ui design tokens and variants
+
+### Component Development
+- All components must follow shadcn/ui's component API patterns
+- Use the same prop interfaces and naming conventions as shadcn/ui
+- Implement proper TypeScript types matching shadcn/ui standards
+- Follow accessibility patterns established by shadcn/ui
+
+### Styling & Theming
+- Use Tailwind CSS classes as defined by shadcn/ui components
+- Maintain the existing design token system alongside shadcn/ui
+- Ensure components are themeable and support light/dark modes
+- Follow shadcn/ui's CSS variable approach for theming
+
+### Code Quality
+- Components must be fully typed with TypeScript
+- Follow React best practices and hooks patterns
+- Ensure proper component composition and reusability
+- Write clean, maintainable code following shadcn/ui conventions
+
+### When to Create Custom Components
+- Only when no suitable shadcn/ui component exists
+- Custom components must still follow shadcn/ui design patterns
+- Consider contributing back to shadcn/ui if creating broadly useful components
+- Document any custom components thoroughly
+
+### Imports & Dependencies
+- Import components from the local shadcn/ui setup
+- Avoid importing external component libraries unless absolutely necessary
+- Keep dependencies minimal and focused on shadcn/ui ecosystem
+- Use custom-styling 

@@ -1,0 +1,191 @@
+/* Colors converted from color.ts for Tailwind v4 */
+:root {
+  /* Accent colors */
+  --accent: #ef6b38;
+  --accent-hover: #f27d50; /* hover */
+  --accent-active: #e9622f; /* active */
+  --accent-text: #dd5214; /* text */
+  --accent-text-hover: #cf4b11; /* text hover */
+  --accent-text-active: #c14109; /* text active */
+  --accent-background: #fdefe9; /* background */
+
+  /* Primary colors */
+  --primary: #3c48dc; /* label light mode */
+  --primary-hover: #5c65e4; /* hover */
+  --primary-active: #3640d1; /* active */
+  --primary-text: #0816aa; /* text */
+  --primary-text-hover: #2128ba; /* text hover */
+  --primary-text-active: #071289; /* text active */
+  --primary-background: #e9e9fb; /* background */
+
+  /* Greys */
+  --white: #ffffff;
+  --black: #000000;
+  --grey-50: #f8f9fa;
+  --grey-100: #edeef2;
+  --grey-200: #e2e3ea;
+  --grey-300: #cbcedb;
+  --grey-400: #c0c3d3;
+  --grey-500: #a2a4b9;
+  --grey-600: #83859f;
+  --grey-700: #656784;
+  --grey-750: #41415f;
+  --grey-800: #282950;
+  --grey-900: #1c1a39;
+
+  /* Success colors */
+  --success: #2f8233; /* base */
+  --success-hover: #398a3d; /* hover */
+  --success-active: #329138; /* active */
+  --success-text: #207025; /* text */
+  --success-text-hover: #237d26; /* text hover */
+  --success-text-active: #18591c; /* text active */
+  --success-background: #e8f5e9; /* background */
+
+  /* Warning colors */
+  --warning: #e5e05e; /* base */
+  --warning-hover: #ffd336; /* hover */
+  --warning-active: #ffc003; /* active */
+  --warning-text: #8f7d32; /* text */
+  --warning-text-hover: #825f03; /* text hover */
+  --warning-text-active: #6b4d03; /* text active */
+  --warning-background: #f9f7d7; /* background */
+
+  /* Error colors */
+  --error: #d44c48; /* base */
+  --error-hover: #db3d32; /* hover */
+  --error-active: #bf2e27; /* active */
+  --error-text: #a7332f; /* text */
+  --error-text-hover: #c7332c; /* text hover */
+  --error-text-active: #b02823; /* text active */
+  --error-background: #ffe9ec; /* background */
+
+  /* Button borders */
+  --button-border-blue: #3c48dc;
+  --button-border-white: #ffffff;
+}
+
+.dark {
+  /* Accent colors */
+  --accent: #ffa785;
+  --accent-hover: #ffefe9;
+  --accent-active: #ff9a73;
+  --accent-text: #ffdaca;
+  --accent-text-hover: #ffeae2;
+  --accent-text-active: #ffbea2;
+  --accent-background: #ffe2d6;
+  --text-on-accent: #531800;
+
+  /* Primary colors */
+  --primary: #adb3ff;
+  --primary-hover: #eeefff;
+  --primary-active: #7981e6;
+  --primary-text: #cbcfff;
+  --primary-text-hover: #e4e6fe;
+  --primary-text-active: #aeb4ff;
+  --primary-background: #dde0ff;
+
+  /* Greys (dark base) */
+  --black: #000000;
+  --white: #ffffff;
+  --grey-50: #f8f9fa;
+  --grey-100: #edeef2;
+  --grey-200: #e2e3ea;
+  --grey-300: #cbcedb;
+  --grey-400: #c0c3d3;
+  --grey-500: #a2a4b9;
+  --grey-600: #83859f;
+  --grey-700: #656784;
+  --grey-750: #41415f;
+  --grey-800: #282950;
+  --grey-900: #1c1a39;
+
+  /* Success colors */
+  --success: #74ff7b;
+  --success-hover: #e8ffe9;
+  --success-active: #53ff5c;
+  --success-text: #a9ffad;
+  --success-text-hover: #d3ffd5;
+  --success-text-active: #97ff9c;
+  --success-background: #19421b;
+
+  /* Warning colors */
+  --warning: #fffa6c;
+  --warning-hover: #fffedf;
+  --warning-active: #fff944;
+  --warning-text: #fffc9b;
+  --warning-text-hover: #fffdd1;
+  --warning-text-active: #fffa70;
+  --warning-background: #3f3e1b;
+
+  /* Error colors */
+  --error: #ffa19f;
+  --error-hover: #ffe5e4;
+  --error-active: #ff6f6c;
+  --error-text: #ffc4c2;
+  --error-text-hover: #ffdad9;
+  --error-text-active: #ff8f8b;
+  --error-background: #461e1d;
+
+  /* Button borders */
+  --button-border-blue: #adb3ff;
+  --button-border-white: #ffffff;
+}
+
+/* Tailwind v4 @theme block - all colors defined here */
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-text: var(--primary-text);
+  --color-primary-text-hover: var(--primary-text-hover);
+  --color-primary-text-active: var(--primary-text-active);
+  --color-primary-background: var(--primary-background);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
+  --color-accent-text: var(--accent-text);
+  --color-accent-text-hover: var(--accent-text-hover);
+  --color-accent-text-active: var(--accent-text-active);
+  --color-accent-background: var(--accent-background);
+  --color-text-on-accent: var(--text-on-accent);
+
+  --color-error: var(--error);
+  --color-error-hover: var(--error-hover);
+  --color-error-active: var(--error-active);
+  --color-error-text: var(--error-text);
+  --color-error-text-hover: var(--error-text-hover);
+  --color-error-text-active: var(--error-text-active);
+  --color-error-background: var(--error-background);
+
+  --color-success: var(--success);
+  --color-success-hover: var(--success-hover);
+  --color-success-active: var(--success-active);
+  --color-success-text: var(--success-text);
+  --color-success-text-hover: var(--success-text-hover);
+  --color-success-text-active: var(--success-text-active);
+  --color-success-background: var(--success-background);
+
+  --color-white: var(--white);
+  --color-black: var(--black);
+  --color-grey-50: var(--grey-50);
+  --color-grey-100: var(--grey-100);
+  --color-grey-200: var(--grey-200);
+  --color-grey-300: var(--grey-300);
+  --color-grey-400: var(--grey-400);
+  --color-grey-500: var(--grey-500);
+  --color-grey-600: var(--grey-600);
+  --color-grey-700: var(--grey-700);
+  --color-grey-750: var(--grey-750);
+  --color-grey-800: var(--grey-800);
+  --color-grey-900: var(--grey-900);
+
+  --color-warning: var(--warning);
+  --color-warning-hover: var(--warning-hover);
+  --color-warning-active: var(--warning-active);
+  --color-warning-text: var(--warning-text);
+  --color-warning-text-hover: var(--warning-text-hover);
+  --color-warning-text-active: var(--warning-text-active);
+  --color-warning-background: var(--warning-background);
+}

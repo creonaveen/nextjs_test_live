@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from 'investtech/external-components';
 import {
   Drawer,
   DrawerClose,
@@ -10,7 +10,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@/components/ui/drawer';
+} from 'investtech/external-components';
 
 export function DrawerDemo() {
   return (
@@ -46,8 +46,8 @@ export const drawerExampleCode = `import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer"
-import { Button } from "@/components/ui/button"
+} from "@/components/external-components/drawer"
+import { Button } from "@/components/external-components/button"
 
 export function DrawerDemo() {
   return (

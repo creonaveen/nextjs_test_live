@@ -1,7 +1,7 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
+import { Label } from 'investtech/external-components';
+import { Switch } from 'investtech/external-components';
 
 export function SwitchDemo() {
   return (
@@ -12,8 +12,8 @@ export function SwitchDemo() {
   );
 }
 
-export const switchExampleCode = `import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
+export const switchExampleCode = `import { Switch } from "@/components/external-components/switch"
+import { Label } from "@/components/external-components/label"
 
 // Basic switch with label
 <div className="flex items-center space-x-2">

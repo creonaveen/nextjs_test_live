@@ -5,7 +5,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from 'investtech/external-components';
 
 export function AccordionDemo() {
   return (
@@ -35,7 +35,7 @@ export const accordionExampleCode = `import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
+} from "@/components/external-components/accordion"
 
 export function AccordionDemo() {
   return (

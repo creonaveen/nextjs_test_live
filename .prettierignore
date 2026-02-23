@@ -1,0 +1,25 @@
+# Build output
+.next
+out
+build
+dist
+web
+# Dependencies
+node_modules
+package-lock.json
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env*
+!.env.example
+
+# Cache
+.cache
+.vercel
+
+# Misc
+.DS_Store
+*.pem 

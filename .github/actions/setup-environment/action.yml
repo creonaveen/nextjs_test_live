@@ -1,0 +1,29 @@
+name: 'Setup Node Project'
+description: 'Checkout code, setup Node, and install dependencies'
+
+inputs:
+  node-version:
+    description: 'Node.js version to use'
+    required: false
+    default: '22' # project is using node 22
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+
+    - name: Setup Git for private dependency
+      shell: bash
+      env:
+        AUTH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global url."https://${AUTH_TOKEN}@github.com/".insteadOf "https://github.com/"
+        git config --global url."https://${AUTH_TOKEN}@github.com/".insteadOf "ssh://git@github.com/"
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci

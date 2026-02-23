@@ -1,8 +1,8 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button } from 'investtech/external-components';
+import { Input } from 'investtech/external-components';
+import { Label } from 'investtech/external-components';
 import {
   Sheet,
   SheetContent,
@@ -11,8 +11,8 @@ import {
   SheetTitle,
   SheetTrigger,
   SheetFooter,
-} from '@/components/ui/sheet';
-import { Switch } from '@/components/ui/switch';
+} from 'investtech/external-components';
+import { Switch } from 'investtech/external-components';
 
 export function SheetDemo() {
   return (
@@ -213,10 +213,10 @@ export const sheetExampleCode = `import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
+} from "investtech/external-components"
+import { Button } from "investtech/external-components"
+import { Label } from "investtech/external-components"
+import { Switch } from "investtech/external-components"
 
 export function SheetDemo() {
   return (

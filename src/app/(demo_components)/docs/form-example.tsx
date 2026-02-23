@@ -1,20 +1,15 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Search, Check, ChevronsUpDown } from 'lucide-react';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from 'investtech/external-components';
+import { Checkbox } from 'investtech/external-components';
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from '@/components/ui/command';
+} from 'investtech/external-components';
 import {
   Form,
   FormControl,
@@ -23,20 +18,24 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+} from 'investtech/external-components';
+import { Input } from 'investtech/external-components';
+import { Popover, PopoverContent, PopoverTrigger } from 'investtech/external-components';
+import { RadioGroup, RadioGroupItem } from 'investtech/external-components';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Switch } from '@/components/ui/switch';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/components/ui/use-toast';
+} from 'investtech/external-components';
+import { Switch } from 'investtech/external-components';
+import { Textarea } from 'investtech/external-components';
+import { useToast } from 'investtech/external-components';
+import { Search, Check, ChevronsUpDown } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
 import { cn } from '@/lib/utils';
 
 // Form validation schema
@@ -44,7 +43,7 @@ const formSchema = z.object({
   search: z.string().optional(),
   searchRight: z.string().optional(),
   framework: z.string({
-    required_error: 'Please select a framework.',
+    message: 'Please select a framework.',
   }),
   username: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
@@ -59,16 +58,16 @@ const formSchema = z.object({
     message: 'Bio must not be longer than 160 characters.',
   }),
   role: z.string({
-    required_error: 'Please select a role.',
+    message: 'Please select a role.',
   }),
   notifications: z.boolean({
-    required_error: 'Please set notifications preference.',
+    message: 'Please set notifications preference.',
   }),
   marketing: z.boolean({
-    required_error: 'Please set marketing preference.',
+    message: 'Please set marketing preference.',
   }),
   subscription: z.enum(['free', 'pro', 'enterprise'], {
-    required_error: 'Please select a subscription plan.',
+    message: 'Please select a subscription plan.',
   }),
   terms: z.boolean().refine((val) => val === true, {
     message: 'You must accept the terms and conditions.',
@@ -100,10 +99,16 @@ const frameworks = [
   },
 ];
 
+/**
+ * Form example component demonstrating various form inputs with validation.
+ * Includes text inputs, selects, checkboxes, radio groups, and switches.
+ *
+ * @returns A form with comprehensive validation examples
+ */
 export function FormExample() {
   const { toast } = useToast();
   const form = useForm<FormValues>({
-    resolver: zodResolver<FormValues, unknown, FormValues>(formSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: {
       search: '',
       searchRight: '',
@@ -118,18 +123,32 @@ export function FormExample() {
     },
   });
 
-  function onSubmit() {
-    // Handle form submission
-    toast({
-      title: 'Form submitted successfully',
-      description: 'Your information has been saved.',
-    });
+  /**
+   * Handles form submission with validation
+   * @param values - The form values after validation
+   */
+  function onSubmit(values: FormValues) {
+    try {
+      // Handle form submission
+      console.log('Form submitted with values:', values);
+      toast({
+        title: 'Form submitted successfully',
+        description: 'Your information has been saved.',
+      });
+      // Reset form after successful submission
+      form.reset();
+    } catch {
+      toast({
+        title: 'Error',
+        description: 'Failed to submit form. Please try again.',
+      });
+    }
   }
 
   return (
     <div className="mx-auto max-w-2xl p-6">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={() => void form.handleSubmit(onSubmit)()} className="space-y-8">
           <FormField
             control={form.control}
             name="search"
@@ -138,7 +157,7 @@ export function FormExample() {
                 <FormLabel>Search</FormLabel>
                 <FormControl>
                   <div className="relative">
-                    <Search className="text-muted-foreground absolute top-2.5 left-2 h-4 w-4" />
+                    <Search className="text-grey-700 dark:text-grey-200 absolute top-2.5 left-2 h-4 w-4" />
                     <Input placeholder="Search..." className="pl-8" {...field} />
                   </div>
                 </FormControl>
@@ -157,7 +176,7 @@ export function FormExample() {
                 <FormControl>
                   <div className="relative">
                     <Input placeholder="Search with right icon..." className="pr-8" {...field} />
-                    <Search className="text-muted-foreground absolute top-2.5 right-2 h-4 w-4" />
+                    <Search className="text-grey-700 dark:text-grey-200 absolute top-2.5 right-2 h-4 w-4" />
                   </div>
                 </FormControl>
                 <FormDescription>Search with icon on the right side.</FormDescription>
@@ -180,7 +199,7 @@ export function FormExample() {
                         role="combobox"
                         className={cn(
                           'w-full justify-between',
-                          !field.value && 'text-muted-foreground'
+                          !field.value && 'text-grey-700 dark:text-grey-200'
                         )}
                       >
                         {field.value
@@ -418,7 +437,7 @@ export const formExampleCode = `import React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/external-components/button"
 import {
   Form,
   FormControl,
@@ -427,23 +446,28 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/external-components/form"
+import { Input } from "@/components/external-components/input"
+import { Textarea } from "@/components/external-components/textarea"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Switch } from "@/components/ui/switch"
-import { useToast } from "@/components/ui/use-toast"
+} from "@/components/external-components/select"
+import { Checkbox } from "@/components/external-components/checkbox"
+import { RadioGroup, RadioGroupItem } from "@/components/external-components/radio-group"
+import { Switch } from "@/components/external-components/switch"
+import { useToast } from "@/components/external-components/use-toast"
 
 // Form validation schema
 const formSchema = z.object({
+  search: z.string().optional(),
+  searchRight: z.string().optional(),
+  framework: z.string({
+    message: "Please select a framework.",
+  }),
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
@@ -457,16 +481,16 @@ const formSchema = z.object({
     message: "Bio must not be longer than 160 characters.",
   }),
   role: z.string({
-    required_error: "Please select a role.",
+    message: "Please select a role.",
   }),
   notifications: z.boolean({
-    required_error: "Please set notifications preference.",
+    message: "Please set notifications preference.",
   }),
   marketing: z.boolean({
-    required_error: "Please set marketing preference.",
+    message: "Please set marketing preference.",
   }),
   subscription: z.enum(["free", "pro", "enterprise"], {
-    required_error: "Please select a subscription plan.",
+    message: "Please select a subscription plan.",
   }),
   terms: z.boolean().refine((val) => val === true, {
     message: "You must accept the terms and conditions.",
@@ -480,6 +504,9 @@ export function FormExample() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      search: "",
+      searchRight: "",
+      framework: "",
       username: "",
       email: "",
       password: "",
@@ -490,17 +517,27 @@ export function FormExample() {
     },
   })
 
-  function onSubmit() {
-    toast({
-      title: "Form submitted successfully",
-      description: "Your information has been saved.",
-    })
+  function onSubmit(values: FormValues) {
+    try {
+      // Handle form submission
+      toast({
+        title: "Form submitted successfully",
+        description: "Your information has been saved.",
+      })
+      form.reset()
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit form. Please try again.",
+        variant: "destructive",
+      })
+    }
   }
 
   return (
     <div className="mx-auto max-w-2xl p-6">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={() => void form.handleSubmit(onSubmit)()} className="space-y-8">
           <FormField
             control={form.control}
             name="username"

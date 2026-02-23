@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from 'investtech/external-components';
 import {
   Dialog,
   DialogContent,
@@ -9,9 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+} from 'investtech/external-components';
+import { Input } from 'investtech/external-components';
+import { Label } from 'investtech/external-components';
 
 export function DialogDemo() {
   return (
@@ -149,10 +149,10 @@ export const dialogExampleCode = `import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+} from "@/components/external-components/dialog"
+import { Button } from "@/components/external-components/button"
+import { Label } from "@/components/external-components/label"
+import { Input } from "@/components/external-components/input"
 
 export function DialogDemo() {
   return (

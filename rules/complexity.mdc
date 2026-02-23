@@ -1,0 +1,69 @@
+---
+description: Keep cyclomatic and cognitive complexity low
+alwaysApply: true
+---
+
+# Complexity Rules
+
+Keep functions and components simple. Align with ESLint: **cyclomatic complexity ≤ 10** (see [eslint.config.mjs](../../eslint.config.mjs)).
+
+## Cyclomatic complexity
+
+Prefer early returns and small functions over many branches. Stay under the project limit of 10.
+
+```typescript
+// BAD: Many branches in one function
+function getStatus(order: Order) {
+  if (order.cancelled) return 'cancelled';
+  if (order.shipped) return 'shipped';
+  if (order.paid && !order.shipped) return 'processing';
+  if (!order.paid) return 'pending';
+  return 'unknown';
+}
+
+// GOOD: Extract or use a map/strategy; fewer branches per function
+const statusRules: Array<{ check: (o: Order) => boolean; status: string }> = [
+  { check: (o) => o.cancelled, status: 'cancelled' },
+  { check: (o) => o.shipped, status: 'shipped' },
+  // ...
+];
+function getStatus(order: Order) {
+  return statusRules.find((r) => r.check(order))?.status ?? 'unknown';
+}
+```
+
+## Function size and nesting
+
+Keep functions short and focused (e.g. under ~20–30 lines). Avoid nesting deeper than about 3 levels; use early returns and guard clauses.
+
+```typescript
+// BAD: Deep nesting, long function
+function processUser(input: unknown) {
+  if (input) {
+    const data = validate(input);
+    if (data) {
+      const user = mapToUser(data);
+      if (user.active) {
+        await save(user);
+        await notify(user);
+      }
+    }
+  }
+}
+
+// GOOD: Early returns, extracted helpers
+function processUser(input: unknown) {
+  const data = validate(input);
+  if (!data) return;
+  const user = mapToUser(data);
+  if (!user.active) return;
+  await save(user);
+  await notify(user);
+}
+```
+
+## Cognitive simplicity
+
+One clear purpose per function. Avoid clever or dense logic; favor readable, linear flow.
+
+When suggesting or refactoring code, keep complexity low: respect the complexity limit, small functions, shallow nesting, and early returns.

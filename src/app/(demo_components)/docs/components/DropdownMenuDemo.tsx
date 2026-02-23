@@ -1,14 +1,24 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
+import { Button } from 'investtech/external-components';
 import {
-  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from 'investtech/external-components';
+
+// Custom DropdownMenu without scroll lock behavior
+function DropdownMenu({
+  onOpenChange,
+  ...props
+}: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
+  return (
+    <DropdownMenuPrimitive.Root data-slot="dropdown-menu" onOpenChange={onOpenChange} {...props} />
+  );
+}
 
 export function DropdownMenuDemo() {
   return (
@@ -35,8 +45,8 @@ export const dropdownMenuExampleCode = `import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
+} from "@/components/external-components/dropdown-menu"
+import { Button } from "@/components/external-components/button"
 
 export function DropdownMenuDemo() {
   return (
@@ -55,3 +65,5 @@ export function DropdownMenuDemo() {
     </DropdownMenu>
   )
 }`;
+
+export { DropdownMenuTrigger, DropdownMenuContent, DropdownMenu, DropdownMenuItem };

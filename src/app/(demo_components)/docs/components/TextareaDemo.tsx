@@ -1,10 +1,10 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import { Label } from 'investtech/external-components';
+import { Textarea } from 'investtech/external-components';
 
-export const textareaExampleCode = `import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
+export const textareaExampleCode = `import { Textarea } from "@/components/external-components/textarea"
+import { Label } from "@/components/external-components/label"
 
 export function TextareaExample() {
   return (

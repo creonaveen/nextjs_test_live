@@ -1,117 +1,111 @@
 {
   "version": 3,
   "pages404": true,
+  "appType": "app",
   "caseSensitive": false,
-  "basePath": "/partners",
+  "basePath": "/web",
   "redirects": [
     {
-      "source": "/partners/",
-      "destination": "/partners",
+      "source": "/web/",
+      "destination": "/web",
       "basePath": false,
       "internal": true,
+      "priority": true,
       "statusCode": 308,
-      "regex": "^/partners/$"
+      "regex": "^/web/$"
     },
     {
       "source": "/:path+/",
       "destination": "/:path+",
       "internal": true,
+      "priority": true,
       "statusCode": 308,
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
     }
   ],
-  "headers": [],
+  "headers": [
+    {
+      "source": "/web/:path*",
+      "headers": [
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self';"
+        }
+      ],
+      "regex": "^/web(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    }
+  ],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [
+      {
+        "source": "/api/:path*",
+        "destination": "https://bravo.investtech.com:8830/api/:path*",
+        "basePath": false,
+        "regex": "^/api(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+      }
+    ],
+    "fallback": []
+  },
   "dynamicRoutes": [
     {
-      "page": "/api/[...path]",
-      "regex": "^/api/(.+?)(?:/)?$",
+      "page": "/company/[id]",
+      "regex": "^/company/([^/]+?)(?:/)?$",
       "routeKeys": {
-        "nxtPpath": "nxtPpath"
+        "nxtPid": "nxtPid"
       },
-      "namedRegex": "^/api/(?<nxtPpath>.+?)(?:/)?$"
+      "namedRegex": "^/company/(?<nxtPid>[^/]+?)(?:/)?$"
     },
     {
-      "page": "/[partner_slug]",
-      "regex": "^/([^/]+?)(?:/)?$",
+      "page": "/docs/[slug]",
+      "regex": "^/docs/([^/]+?)(?:/)?$",
       "routeKeys": {
-        "nxtPpartner_slug": "nxtPpartner_slug"
+        "nxtPslug": "nxtPslug"
       },
-      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)(?:/)?$"
-    },
-    {
-      "page": "/[partner_slug]/help",
-      "regex": "^/([^/]+?)/help(?:/)?$",
-      "routeKeys": {
-        "nxtPpartner_slug": "nxtPpartner_slug"
-      },
-      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/help(?:/)?$"
-    },
-    {
-      "page": "/[partner_slug]/indices",
-      "regex": "^/([^/]+?)/indices(?:/)?$",
-      "routeKeys": {
-        "nxtPpartner_slug": "nxtPpartner_slug"
-      },
-      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/indices(?:/)?$"
-    },
-    {
-      "page": "/[partner_slug]/modelportfolio",
-      "regex": "^/([^/]+?)/modelportfolio(?:/)?$",
-      "routeKeys": {
-        "nxtPpartner_slug": "nxtPpartner_slug"
-      },
-      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/modelportfolio(?:/)?$"
-    },
-    {
-      "page": "/[partner_slug]/mynotes",
-      "regex": "^/([^/]+?)/mynotes(?:/)?$",
-      "routeKeys": {
-        "nxtPpartner_slug": "nxtPpartner_slug"
-      },
-      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/mynotes(?:/)?$"
-    },
-    {
-      "page": "/[partner_slug]/research",
-      "regex": "^/([^/]+?)/research(?:/)?$",
-      "routeKeys": {
-        "nxtPpartner_slug": "nxtPpartner_slug"
-      },
-      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/research(?:/)?$"
-    },
-    {
-      "page": "/[partner_slug]/stocks",
-      "regex": "^/([^/]+?)/stocks(?:/)?$",
-      "routeKeys": {
-        "nxtPpartner_slug": "nxtPpartner_slug"
-      },
-      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/stocks(?:/)?$"
-    },
-    {
-      "page": "/[partner_slug]/todayscase",
-      "regex": "^/([^/]+?)/todayscase(?:/)?$",
-      "routeKeys": {
-        "nxtPpartner_slug": "nxtPpartner_slug"
-      },
-      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/todayscase(?:/)?$"
-    },
-    {
-      "page": "/[partner_slug]/top50",
-      "regex": "^/([^/]+?)/top50(?:/)?$",
-      "routeKeys": {
-        "nxtPpartner_slug": "nxtPpartner_slug"
-      },
-      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/top50(?:/)?$"
-    },
-    {
-      "page": "/[partner_slug]/watchlist",
-      "regex": "^/([^/]+?)/watchlist(?:/)?$",
-      "routeKeys": {
-        "nxtPpartner_slug": "nxtPpartner_slug"
-      },
-      "namedRegex": "^/(?<nxtPpartner_slug>[^/]+?)/watchlist(?:/)?$"
+      "namedRegex": "^/docs/(?<nxtPslug>[^/]+?)(?:/)?$"
     }
   ],
   "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
     {
       "page": "/_not-found",
       "regex": "^/_not\\-found(?:/)?$",
@@ -125,38 +119,94 @@
       "namedRegex": "^/docs(?:/)?$"
     },
     {
+      "page": "/docs/table",
+      "regex": "^/docs/table(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/docs/table(?:/)?$"
+    },
+    {
       "page": "/favicon.ico",
       "regex": "^/favicon\\.ico(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/healthcheck",
+      "regex": "^/healthcheck(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/healthcheck(?:/)?$"
+    },
+    {
+      "page": "/indices",
+      "regex": "^/indices(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/indices(?:/)?$"
+    },
+    {
+      "page": "/marketcommentary",
+      "regex": "^/marketcommentary(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/marketcommentary(?:/)?$"
+    },
+    {
+      "page": "/modelportfolio",
+      "regex": "^/modelportfolio(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modelportfolio(?:/)?$"
+    },
+    {
+      "page": "/mynotes",
+      "regex": "^/mynotes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/mynotes(?:/)?$"
+    },
+    {
+      "page": "/session_expiry",
+      "regex": "^/session_expiry(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/session_expiry(?:/)?$"
+    },
+    {
+      "page": "/stocks",
+      "regex": "^/stocks(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/stocks(?:/)?$"
+    },
+    {
+      "page": "/todayscase",
+      "regex": "^/todayscase(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/todayscase(?:/)?$"
+    },
+    {
+      "page": "/top50",
+      "regex": "^/top50(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/top50(?:/)?$"
+    },
+    {
+      "page": "/watchlist",
+      "regex": "^/watchlist(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/watchlist(?:/)?$"
     }
   ],
   "dataRoutes": [],
   "rsc": {
-    "header": "RSC",
-    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
-    "prefetchHeader": "Next-Router-Prefetch",
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
     "didPostponeHeader": "x-nextjs-postponed",
     "contentTypeHeader": "text/x-component",
     "suffix": ".rsc",
-    "prefetchSuffix": ".prefetch.rsc",
-    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
     "prefetchSegmentSuffix": ".segment.rsc",
-    "prefetchSegmentDirSuffix": ".segments"
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
   },
   "rewriteHeaders": {
     "pathHeader": "x-nextjs-rewritten-path",
     "queryHeader": "x-nextjs-rewritten-query"
-  },
-  "rewrites": {
-    "beforeFiles": [
-      {
-        "source": "/partners//_next/:path+",
-        "destination": "/partners/_next/:path+",
-        "regex": "^/partners//_next(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))(?:/)?$"
-      }
-    ],
-    "afterFiles": [],
-    "fallback": []
   }
 }

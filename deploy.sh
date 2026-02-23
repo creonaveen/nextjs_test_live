@@ -19,7 +19,8 @@ echo "--- pm2 start ---"
 
 sleep 2
 
-pm2 --max-memory-restart 400M start "web/server.js" --name "web" -i max -o "/dev/null" -e "/dev/null"
+#pm2 --max-memory-restart 400M start "web/server.js" --name "web" -i max
+pm2 start ecosystem.config.cjs
 
 echo "--------------------------"
 
@@ -37,8 +38,6 @@ pm2 save
 echo "saved ..."
 
 sleep 2
-
-pm2 scale web +3 
 
 echo "-----------Free memory----------"
 

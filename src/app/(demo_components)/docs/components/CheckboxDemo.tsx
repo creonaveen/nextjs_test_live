@@ -1,7 +1,7 @@
 'use client';
 
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
+import { Checkbox } from 'investtech/external-components';
+import { Label } from 'investtech/external-components';
 
 export function CheckboxDemo() {
   return (
@@ -12,8 +12,8 @@ export function CheckboxDemo() {
   );
 }
 
-export const checkboxExampleCode = `import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
+export const checkboxExampleCode = `import { Checkbox } from "investtech/external-components"
+import { Label } from "@/components/external-components"
 
 // Basic checkbox with label
 <div className="flex items-center space-x-2">
@@ -38,6 +38,6 @@ import { Label } from "@/components/ui/label"
   <Checkbox id="description" />
   <div className="grid gap-1.5 leading-none">
     <Label htmlFor="description">Enable notifications</Label>
-    <p className="text-muted-foreground text-sm">Receive notifications about new messages.</p>
+    <p className="text-grey-700 dark:text-grey-200 text-sm">Receive notifications about new messages.</p>
   </div>
 </div>`;

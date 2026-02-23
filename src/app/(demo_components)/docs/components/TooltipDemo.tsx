@@ -1,7 +1,12 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Button } from 'investtech/external-components';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from 'investtech/external-components';
 
 export function TooltipDemo() {
   return (
@@ -18,8 +23,8 @@ export function TooltipDemo() {
   );
 }
 
-export const tooltipExampleCode = `import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { Button } from "@/components/ui/button"
+export const tooltipExampleCode = `import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/external-components/tooltip"
+import { Button } from "@/components/external-components/button"
 
 export function TooltipDemo() {
   return (

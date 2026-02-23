@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from 'investtech/external-components';
 
 export function SelectDemo() {
   return (
@@ -31,7 +31,7 @@ export const selectExampleCode = `import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "investtech/external-components"
 
 // Basic Select
 <Select>

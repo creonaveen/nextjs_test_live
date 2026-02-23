@@ -1,0 +1,10 @@
+{
+  "name": "node-domexception-native",
+  "version": "1.0.0",
+  "description": "Re-export of native DOMException (replaces deprecated node-domexception)",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

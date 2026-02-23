@@ -1,10 +1,21 @@
 @import 'tailwindcss';
+@config "../../tailwind.config.js";
 @import 'tw-animate-css';
+@import '../styles/colors.css';
+@import '../styles/svg-styles.css';
+@import '../styles/factor-graph.css';
+@import '../styles/health-check.css';
+@import '../styles/table.css';
+@import 'investtech/tokens/colors.css';
+@import 'investtech/tokens/font-weight.css';
+@import 'investtech/tokens/spacing.css';
+@import 'investtech/tokens/font-size.css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --default-font-family: var(--font-inter);
+  --font-headline: 'TestTiemposHeadline', serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-inter: var(--font-inter);
@@ -24,15 +35,14 @@
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
+  --color-divider: var(--divider);
   --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
+  --color-accent-1: var(--accent-1);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-footer-text: var(--footer-text);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -41,26 +51,33 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-contrast-background: var(--contrast-background);
+  --color-contrast-foreground: var(--contrast-foreground);
+  --color-chart-background: var(--chart-background);
+
+  /* Screen breakpoints */
+  --breakpoint-2xl: 90rem;
+  /* 1440px */
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: var(--grey-50);
   --foreground: oklch(0.3013 0.0695 280.26);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --card: var(--white);
+  --card-foreground: var(--black);
+  --popover: var(--white);
+  --popover-foreground: var(--black);
   --primary: #3c48dc;
-  --primary-foreground: #e9e9fb;
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.5231 0.0456 281.61);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: #d44c48;
-  --border: oklch(0.922 0 0);
+  --footer-text: #adb3ff;
+  --primary-foreground: var(--white);
+  --primary-background-1: var(--primary-background);
+  --secondary: #f5f5f5;
+  --secondary-foreground: var(--grey-700);
+  --accent-1: var(--grey-100);
+  --destructive: var(--error);
+  --border: var(--grey-500);
+  --divider: rgba(28, 26, 57, 0.12);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -76,26 +93,29 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --search-bg: #edeef2;
+  --contrast-background: var(--grey-900);
+  --contrast-foreground: var(--white);
+  --chart-background: var(--chart);
 }
 
 .dark {
-  --background: #282950;
+  --background: var(--grey-900);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
+  --card: var(--grey-800);
+  --card-foreground: var(--white);
   --popover: #424467;
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: #3c48dc;
-  --primary-foreground: #e9e9fb;
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: #424467;
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: #d44c48;
-  --border: oklch(1 0 0 / 10%);
+  --popover-foreground: var(--white);
+  --primary: #adb3ff;
+  --footer-text: #adb3ff;
+  --primary-foreground: var(--white);
+  --primary-background-1: var(--grey-750);
+  --secondary: #262626;
+  --secondary-foreground: var(--grey-200);
+  --accent-1: #424467;
+  --destructive: var(--error);
+  --border: var(--grey-700);
+  /* --divider: #565770; */
+  --divider: var(--grey-900);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
@@ -111,49 +131,100 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --contrast-background: var(--grey-50);
+  --contrast-foreground: var(--grey-900);
+  --chart-background: #03002a;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-inter);
+    overflow-x: hidden;
   }
 }
 
-.pageHeader {
+.page-header-table {
   margin-bottom: 32px;
   font-size: xx-large;
   font-weight: 400;
 }
 
+.page-header {
+  font-size: xx-large;
+  font-weight: 400;
+}
+
 .scroll-locked {
-  overflow-y: scroll; /* Force scrollbar visible */
+  overflow-y: scroll;
+  /* Force scrollbar visible */
   position: fixed;
   width: 100%;
 }
 
 .dropdown-menu-trigger {
-  border: 1px solid var(--border); /* border-border */
-  color: var(--secondary-foreground); /* text-secondary-foreground */
-  display: flex; /* flex */
-  align-items: center; /* items-center */
-  gap: 36px; /* gap-[36px] */
-  border-radius: 0.5rem; /* rounded-sm = 2px */
-  padding: 0.5rem; /* p-2 = 8px */
-  font-size: 0.75rem; /* text-xs = 12px */
-  line-height: 1rem; /* text-xs line-height */
+  border: 1px solid var(--border);
+  /* border-border */
+  color: var(--secondary-foreground);
+  /* text-secondary-foreground */
+  display: flex;
+  /* flex */
+  align-items: center;
+  /* items-center */
+  gap: 36px;
+  /* gap-[36px] */
+  border-radius: 0.5rem;
+  /* rounded-sm = 2px */
+  padding: 0.5rem;
+  /* p-2 = 8px */
+  font-size: 0.75rem;
+  /* text-xs = 12px */
+  line-height: 1rem;
+  /* text-xs line-height */
+  cursor: pointer;
+}
+
+/* Hover effects for dropdown-menu-trigger */
+.dropdown-menu-trigger:hover {
+  color: var(--grey-900);
+  background-color: var(--primary-background-1);
+  /* Slightly darker on hover in light mode */
+}
+
+.dropdown-menu-trigger[data-state='open'] {
+  border: 1px solid var(--primary);
+  background-color: var(--primary-background-1);
+}
+
+.dark .dropdown-menu-trigger:hover {
+  color: var(--grey-100);
+  background-color: var(--grey-750);
 }
 
 .search-input {
-  color: var(--foreground); /* text-foreground */
-  font-family: var(--font-text-styles-body-body); /* font-text-styles-body-body */
-  border-radius: 20px; /* rounded-[20px] */
-  border: none; /* border-none */
-  background-color: var(--search-bg); /* bg-[#edeef2] */
-  padding: 1rem 1rem; /* px-4 py-4 */
+  font-family: var(--font-text-styles-body-body);
+  /* font-text-styles-body-body */
+  /* border-radius: 20px; */
+  border: none !important;
+  /* border-none */
+  background-color: var(--grey-100);
+  /* bg-[#edeef2] */
+  padding: 1rem 1.25rem 1rem 1rem;
+  /* px-4 py-4 */
+}
+
+.search-input::placeholder {
+  color: var(--grey-800) !important;
+  /* text-foreground */
+}
+
+.dark .search-input::placeholder {
+  color: var(--grey-100) !important;
+  /* text-foreground */
 }
 
 /* md:px-5 → applies at medium screen sizes and up */
@@ -166,33 +237,382 @@
 
 /* dark:bg-muted */
 .dark .search-input {
-  background-color: var(--background);
-  border: #ffffff 1px solid; /* border-white */
+  color: var(--grey-100);
+  background-color: var(--grey-750);
+}
+
+/* Hover effects for search-input */
+.search-input:hover,
+.search-input:focus {
+  color: var(--grey-900);
+  background-color: var(--primary-background-1);
+  /* Slightly darker on hover in light mode */
+}
+
+.search-input:focus {
+  border: 1px solid var(--primary);
+}
+
+.dark .search-input:hover,
+.dark .search-input:focus {
+  color: var(--grey-100);
+  background-color: var(--grey-700);
+  /* Slightly lighter on hover in dark mode */
 }
 
 .search-icon-desktop {
-  color: var(--muted-foreground); /* text-muted-foreground */
-  position: absolute; /* absolute */
-  right: 1rem; /* right-4 */
-  height: 1rem; /* h-4 */
-  width: 1rem; /* w-4 */
+  color: var(--grey-800);
+  /* text-muted-foreground */
+  position: absolute;
+  /* absolute */
+  right: 1rem;
+  /* right-4 */
+  height: 1rem;
+  /* h-4 */
+  width: 1rem;
+  /* w-4 */
 }
 
 /* md:right-5 md:h-5 md:w-5 */
 @media (min-width: 768px) {
   .search-icon-desktop {
-    right: 1.25rem; /* right-5 */
-    height: 1.25rem; /* h-5 */
-    width: 1.25rem; /* w-5 */
+    right: 1.25rem;
+    /* right-5 */
+    height: 1.25rem;
+    /* h-5 */
+    width: 1.25rem;
+    /* w-5 */
   }
 }
 
+.dark .search-icon-desktop {
+  color: var(--grey-100);
+  position: absolute;
+  /* absolute */
+  right: 1rem;
+  /* right-4 */
+  height: 1rem;
+  /* h-4 */
+  width: 1rem;
+  /* w-4 */
+}
+
 .search-icon-mobile {
-  position: absolute; /* absolute */
-  top: 50%; /* top-1/2 */
-  right: 1.5rem; /* right-6 => 24px */
-  height: 1.25rem; /* h-5 => 20px */
-  width: 1.25rem; /* w-5 => 20px */
-  transform: translateY(-50%); /* -translate-y-1/2 */
-  color: #a2a4b9; /* text-[#A2A4B9] */
+  position: absolute;
+  /* absolute */
+  top: 50%;
+  /* top-1/2 */
+  right: 0.5rem;
+  /* right-6 => 24px */
+  height: 1.25rem;
+  /* h-5 => 20px */
+  width: 1.25rem;
+  /* w-5 => 20px */
+  transform: translateY(-50%);
+  /* -translate-y-1/2 */
+  color: var(--grey-800);
+  /* text-[#A2A4B9] */
+}
+
+.dark .search-icon-mobile {
+  position: absolute;
+  /* absolute */
+  top: 50%;
+  /* top-1/2 */
+  right: 0.5rem;
+  /* right-6 => 24px */
+  height: 1.25rem;
+  /* h-5 => 20px */
+  width: 1.25rem;
+  /* w-5 => 20px */
+  transform: translateY(-50%);
+  /* -translate-y-1/2 */
+  color: #a2a4b9;
+  /* text-[#A2A4B9] */
+}
+
+.column-header {
+  display: flex;
+  /* flexbox layout */
+  align-items: center;
+  /* vertically center items */
+  gap: 0.25rem;
+  /* Tailwind gap-1 = 4px (0.25rem) */
+}
+
+.table-head {
+  display: table-cell;
+  /* table-cell */
+  min-width: 60px;
+  /* min-w-[60px] */
+  cursor: pointer;
+  /* cursor-pointer */
+}
+
+.table-head:hover {
+  color: var(--primary);
+  /* hover:text-primary */
+}
+
+.dark .table-head:hover {
+  color: var(--primary);
+  /* hover:text-primary */
+}
+
+.active-table-head {
+  color: var(--primary);
+  /* hover:text-primary */
+  font-weight: 600;
+}
+
+.td {
+  white-space: normal;
+  /* allow text to wrap */
+  word-wrap: break-word;
+  /* break long words if needed */
+  word-break: break-word;
+}
+
+.table-cell {
+  white-space: normal;
+  /* allow whiteapce normal */
+  word-wrap: truncate;
+  /* break long words if needed */
+}
+
+.numeric-table-cell {
+  font-family: Arial, sans-serif !important;
+  /* required for the table numbers to be in this font */
+}
+
+.tooltip-content-scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.tooltip-content-scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.badge {
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 1.5px 8px;
+  line-height: 20px;
+}
+
+.hr {
+  background-color: var(--divider);
+  height: 1px;
+  width: 100%;
+  border: none;
+}
+
+.company-link-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+.up-down-icon {
+  transition: transform 300ms;
+  /* transition duration-300 */
+}
+
+.group[data-state='open'] .up-down-icon {
+  transform: rotate(180deg);
+  /* group-data-[state=open]:rotate-180 */
+}
+
+.chart-tooltip {
+  position: fixed;
+  background: var(--color-grey-800);
+  color: var(--color-grey-100);
+  border-radius: 12px;
+  /* Desktop default */
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  pointer-events: none;
+  z-index: 10001;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  max-width: 250px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Touch devices (mobile/tablet) */
+@media (pointer: coarse) {
+  .chart-tooltip {
+    border-radius: 8px;
+    z-index: 0 !important;
+  }
+}
+
+/* Tooltip grid layout for price info */
+.tooltip-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 4px 16px;
+  padding: 12px 16px;
+}
+
+.tooltip-label {
+  color: var(--color-grey-400);
+  font-size: 14px;
+  text-align: left;
+}
+
+.tooltip-value {
+  color: var(--color-grey-100);
+  font-weight: bold;
+  font-size: 14px;
+  text-align: right;
+  font-family: Arial, sans-serif !important;
+  /* required for the table numbers to be in this font */
+}
+
+.rotated-svg {
+  transform: rotate(90deg);
+  transform-origin: center center;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.custom-accordion-trigger svg {
+  color: var(--color-primary);
+  width: 1.5rem;
+  height: 1.5rem;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-xl);
+}
+
+/* Factor diagram tooltip positioning using CSS custom properties */
+.factor-diagram-tooltip-position {
+  left: var(--tooltip-left, 0);
+  top: var(--tooltip-top, 0);
+  width: var(--tooltip-width, 0);
+  height: var(--tooltip-height, 0);
+}
+
+/* Iframe aspect ratio using CSS custom properties */
+.iframe-aspect-ratio {
+  padding-top: var(--iframe-padding-top, 56.25%);
+}
+
+/* Chart maximize transform using CSS custom properties */
+.chart-maximize-transform {
+  transform: var(--chart-transform, none);
+  transform-origin: center center;
+}
+
+/* Centered progress bar using CSS custom properties */
+.centered-progress-bar {
+  width: var(--progress-width, 0%);
+  margin-left: var(--progress-margin-left, 50%);
+}
+
+/* Mobile keyboard viewport handling */
+/* Ensures proper height on mobile devices when keyboard is visible */
+/* @supports (height: 100dvh) { */
+/* html { */
+/* height: 100%; /* Fallback for older browsers */
+/* height: 100dvh; /* Dynamic height for newer browsers */
+/* } */
+/* } */
+
+/* Prevent mobile keyboard from hiding content in sheets */
+/* [data-slot='sheet-content'] {
+  /* Use dynamic viewport height to account for mobile keyboards */
+/* max-height: 100dvh; */
+/* } */
+
+/* Ensure form content is scrollable on mobile */
+textarea {
+  /* Ensure inputs zoom to readability on iOS without triggering keyboard resize issues */
+  font-size: 16px;
+}
+
+/* Mobile keyboard adjustment - handle visual viewport changes */
+@media (max-width: 640px) {
+  [data-slot='sheet-content'] {
+    /* Adjust max-height to account for mobile keyboard */
+    /* max-height: 100dvh; */
+    /* Allow smooth scrolling when keyboard appears */
+    scroll-behavior: smooth;
+  }
+
+  /* Prevent textarea from being hidden by keyboard on first open */
+  textarea:focus {
+    /* Scroll into view with padding for keyboard space */
+    scroll-margin-bottom: 20vh;
+  }
+}
+
+/* iOS Safari specific fixes for sticky header */
+/* Fix for iOS Safari's dynamic viewport when bottom toolbar hides/shows */
+@supports (-webkit-touch-callout: none) {
+  /* Target iOS Safari specifically */
+  #company-mobile-sticky-header {
+    /* Ensure it accounts for safe area on notched devices */
+    top: env(safe-area-inset-top, 0);
+    /* Prevent flickering during scroll - use translateZ for GPU layer */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* Mobile menu overlay - cross-browser scroll fix */
+.mobile-menu-overlay {
+  /* Prevent scroll bounce on the overlay itself */
+  overscroll-behavior: contain;
+}
+
+/* Allow touch scrolling only within the scrollable nav area */
+.mobile-menu-overlay [class*='overflow-y-auto'] {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Safari/iOS specific: Use position fixed to truly prevent background scroll */
+/* This targets Safari only using -webkit-touch-callout which is Safari-exclusive */
+@supports (-webkit-touch-callout: none) {
+  body.mobile-menu-open {
+    position: fixed;
+    top: var(--scroll-y, 0);
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+}
+
+.chart-no-longpress {
+  -webkit-touch-callout: none;
+  /* iOS Safari: disable copy menu */
+  -webkit-user-select: none;
+  /* iOS Safari */
+  user-select: none;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.horizontal-divider {
+  background-color: var(--grey-200);
+  height: 1px;
+  width: 100%;
+  border: none;
+}
+
+.dark .horizontal-divider {
+  background-color: var(--grey-700);
 }

@@ -1,7 +1,7 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from 'investtech/external-components';
+import { RadioGroup, RadioGroupItem } from 'investtech/external-components';
 
 export function RadioGroupDemo() {
   return (
@@ -22,8 +22,8 @@ export function RadioGroupDemo() {
   );
 }
 
-export const radioGroupExampleCode = `import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
+export const radioGroupExampleCode = `import { RadioGroup, RadioGroupItem } from "investtech/external-components"
+import { Label } from "investtech/external-components"
 
 // Basic radio group
 <RadioGroup defaultValue="comfortable">
@@ -55,14 +55,14 @@ import { Label } from "@/components/ui/label"
     <RadioGroupItem value="card" id="r5" />
     <div className="grid gap-1.5 leading-none">
       <Label htmlFor="r5">Card Payment</Label>
-      <p className="text-muted-foreground text-sm">Pay with your credit card.</p>
+      <p className="text-grey-700 dark:text-grey-200 text-sm">Pay with your credit card.</p>
     </div>
   </div>
   <div className="flex items-start space-x-2">
     <RadioGroupItem value="paypal" id="r6" />
     <div className="grid gap-1.5 leading-none">
       <Label htmlFor="r6">PayPal</Label>
-      <p className="text-muted-foreground text-sm">Pay with your PayPal account.</p>
+      <p className="text-grey-700 dark:text-grey-200 text-sm">Pay with your PayPal account.</p>
     </div>
   </div>
 </RadioGroup>`;

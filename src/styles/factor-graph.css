@@ -1,0 +1,428 @@
+/*
+############################################
+	Investtech Factor Graph 
+############################################
+*/
+
+/* Further development (20210628 GL): 
+Animation on hover. Maybe transition on the opacity, both slice and box. Maybe increasing size of the slice a little.
+Example: https://tobiasahlin.com/blog/how-to-animate-box-shadow/
+*/
+
+.enabled:hover {
+  visibility: visible;
+  fill-opacity: 0.25;
+}
+
+.ifgTooltipSliceOpacityLight {
+  fill-opacity: 0; /* full transparency. Will be changed on hover */
+  transition: fill-opacity 0.2s ease;
+}
+
+/* Active/selected slice highlighting for touch devices in bottom sheet */
+/* Touch / selected */
+.ifgTooltipSliceOpacityLight[data-active='true'] {
+  fill-opacity: 0.25;
+}
+
+#ifgComponent .ifgTooltip {
+  visibility: hidden;
+}
+#ifgComponent:hover .ifgTooltip {
+  visibility: visible;
+}
+.ifgTooltip text {
+  fill: black;
+  font-size: 12px;
+  font-family: sans-serif;
+}
+
+/* Ensure tooltip width constraints on mobile devices (<640px) */
+@media (max-width: 639px) {
+  [data-slot='tooltip-content'][id='factor-diagram-tooltip-content'] {
+    position: fixed !important;
+    left: 50% !important;
+    right: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: translateX(-50%) !important;
+    width: calc(100vw - 30px) !important;
+    max-width: calc(100vw - 30px) !important;
+    box-sizing: border-box !important;
+  }
+}
+
+.ifgAxisLegendSmall {
+  color: #000;
+  font-size: 10pt;
+  font-weight: normal;
+}
+.ifgAxisLegendMedium {
+  color: #000;
+  font-size: 12pt;
+  font-weight: normal;
+}
+.ifgAxisLegendLarge {
+  color: #000;
+  font-size: 16pt;
+  font-weight: normal;
+}
+
+.ifgAxisTickCircles {
+  stroke: #ccc;
+  fill: none;
+}
+
+.factorDotLegend {
+  fill: rgb(180, 180, 180);
+  stroke: rgb(90, 90, 90);
+}
+
+.factorDotLegend:hover {
+  fill: rgb(0, 0, 0);
+  stroke: rgb(0, 0, 0);
+}
+
+.ifgTitleLong {
+  background-color: #929898;
+  width: 150px;
+  margin: 0;
+  text-transform: none;
+  color: #000;
+  font-size: 8pt;
+  font-weight: normal;
+  outline: 0;
+}
+.ifgStandard {
+  stroke: #006600;
+  fill: #cc0000;
+}
+.shadowArea {
+  stroke: rgb(220, 220, 220);
+  stroke-width: 2;
+}
+.normalArea {
+  stroke: rgb(128, 128, 128);
+  stroke-width: 2;
+  fill: url('/#radGradZeroToMaxPositive');
+}
+.factorGraphTooltipPointer:hover {
+  fill: rgb(180, 180, 180);
+  transition-duration: 0.3s;
+}
+.enabled {
+  cursor: pointer;
+}
+.factorGraphTooltipLarge {
+  pointer-events: none;
+  position: absolute;
+  font-size: 14px;
+  text-align: left;
+  --tw-bg-opacity: 1;
+  background: rgb(28 26 57 / var(--tw-bg-opacity));
+  padding: 16px;
+  z-index: 5;
+  width: 460px;
+  height: auto;
+  line-height: normal;
+  margin: 0 auto;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px #aaa;
+  opacity: 0;
+  display: none;
+}
+.factorGraphTooltipSmall {
+  pointer-events: none;
+  position: absolute;
+  font-size: 14px;
+  text-align: left;
+  --tw-bg-opacity: 1;
+  background: rgb(28 26 57 / var(--tw-bg-opacity));
+  padding: 16px;
+  z-index: 5;
+  width: 360px;
+  height: auto;
+  line-height: normal;
+  margin: 0 auto;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px #aaa;
+  opacity: 0;
+  display: none;
+}
+.factorGraphTooltipMobile {
+  position: relative;
+}
+.factorGraphTooltipSmall p {
+  padding-bottom: 5px;
+  margin-top: 5px;
+  max-width: 320px;
+}
+.factorGraphTooltipLarge p {
+  padding-bottom: 5px;
+  margin-top: 5px;
+  max-width: 420px;
+}
+.factorGraphTooltipLarge h2,
+.factorGraphTooltipSmall h2 {
+  color: #ffffff;
+}
+.factorGraphTooltipLarge span,
+.factorGraphTooltipSmall span {
+  display: table-cell;
+  vertical-align: middle;
+}
+.factorGraphTooltipLarge.active,
+.factorGraphTooltipSmall.active {
+  display: inline-block;
+  animation: 0.1s ease 0s normal forwards 1 fadein;
+  -webkit-animation: 0.1s ease 0s normal forwards 1 fadein;
+  opacity: 1;
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/**.FGTooltipBottom::after {
+  content: "";
+  position: absolute;
+  right: 50%;
+  top: -3%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid rgb(34, 34, 34);
+}
+
+.FGTooltipTop::after {
+  content: "";
+  position: absolute;
+  right: 50%;
+  top: 100%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid rgb(34, 34, 34);
+}
+
+.FGTooltipRight::after {
+  content: "";
+  position: absolute;
+  right: -2%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid rgb(34, 34, 34);
+} **/
+
+/*** Info table used in tooltip box ***/
+.factorGraphTooltipTable.notActive {
+  /* Center table in box */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.factorGraphTooltipTable td,
+.factorGraphTooltipTable th {
+  font-weight: normal;
+  /*  xfont-size: 14px; */
+  color: #aaa;
+  padding-right: 10px;
+}
+
+.factorGraphTooltipTable td:first-child,
+.factorGraphTooltipTable th:first-child {
+  text-align: left;
+}
+.factorGraphTooltipTable td:nth-child(2),
+.factorGraphTooltipTable th:nth-child(2) {
+  text-align: right;
+}
+.factorGraphTooltipTable td:nth-child(3),
+.factorGraphTooltipTable th:nth-child(3) {
+  text-align: right;
+}
+.factorGraphTooltipTable td:nth-child(4),
+.factorGraphTooltipTable th:nth-child(4) {
+  padding-left: 10px;
+  text-align: left;
+}
+
+.factorGraphTooltipTable th {
+  font-weight: bold;
+}
+
+/** Score bars used by tool tip for factor diagrams **/
+.svgBoxBorder {
+  stroke-width: 1;
+  stroke: rgb(50, 50, 50);
+}
+
+.svgBoxEval2,
+.svgBoxEval1,
+.svgBoxEval0,
+.svgBoxEval-1,
+.svgBoxEval-2 {
+  stroke-width: 1;
+  stroke: rgb(220, 220, 220);
+}
+
+.svgBoxEval2 {
+  fill: Green;
+}
+.svgBoxEval1 {
+  fill: Green;
+}
+.svgBoxEval0 {
+  fill: #f0f005;
+}
+.svgBoxEval-1 {
+  fill: #cc1700;
+}
+.svgBoxEval-2 {
+  fill: #cc1700;
+}
+/* pretty score bar svg styles starts */
+
+.colSet2023Eval1 {
+  fill: #90c823;
+}
+.colSet2023Eval2 {
+  fill: #83b764;
+}
+.colSet2023Eval0 {
+  fill: #ffda56;
+}
+.colSet2023Eval-1 {
+  fill: #ffb156;
+}
+.colSet2023Eval-2 {
+  fill: #ff7377;
+}
+
+/* pretty score bar svg styles ends */
+
+#fullScreenClose {
+  font-size: 24pt;
+  font-weight: 400;
+  padding: 0px 10px;
+  color: #666;
+  outline: 0;
+  top: 20px;
+  position: absolute;
+  right: 20px;
+  border-radius: 50%;
+  background-color: #d3d3d3bd;
+  transform: rotate(45deg);
+}
+
+/* pretty svg score bar styles start */
+
+.progress-bar {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.color1 {
+  fill: #fd8a8a;
+}
+
+.color2 {
+  fill: #f1f7b5;
+}
+
+.color3 {
+  fill: #9ea1d4;
+}
+
+.progress-bar-label {
+  font-size: 14px;
+  font-weight: bold;
+  fill: #333;
+  text-anchor: start;
+}
+
+.progress-bar-score {
+  font-size: 18px;
+  fill: #333;
+  text-anchor: end;
+}
+
+.prettyScoreBarBg {
+  fill: #efefef;
+}
+/* pretty svg score bar styles ends */
+
+/* Dark mode overrides for factor diagram text elements */
+:root.dark .ifgAxisLegendSmall,
+body.dark .ifgAxisLegendSmall {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+:root.dark .ifgAxisLegendMedium,
+body.dark .ifgAxisLegendMedium {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+:root.dark .ifgAxisLegendLarge,
+body.dark .ifgAxisLegendLarge {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* Dark mode overrides for tooltip text */
+:root.dark .ifgTooltip text,
+body.dark .ifgTooltip text {
+  fill: #ffffff !important;
+}
+
+/* Dark mode overrides for title text */
+:root.dark .ifgTitleLong,
+body.dark .ifgTitleLong {
+  color: #ffffff !important;
+  background-color: #3a3a3a !important;
+}
+
+/* Dark mode overrides for progress bar labels */
+:root.dark .progress-bar-label,
+body.dark .progress-bar-label {
+  fill: #ffffff !important;
+}
+
+:root.dark .progress-bar-score,
+body.dark .progress-bar-score {
+  fill: #ffffff !important;
+}
+
+/* Dark mode overrides for score bar background */
+:root.dark .prettyScoreBarBg,
+body.dark .prettyScoreBarBg {
+  fill: #2a2a2a !important;
+}

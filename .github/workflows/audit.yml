@@ -1,0 +1,63 @@
+name: Package Audit
+on:
+  schedule:
+    - cron: '0 0 * * *' # Daily at midnight UTC
+  workflow_dispatch:
+jobs:
+  audit:
+    name: Run npm audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      days: ${{ steps.check-day.outputs.days }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+      - uses: ./.github/actions/setup-environment
+
+      - name: Check if weekly schedule
+        id: check-day
+        run: |
+          DAY=$(date -u +%w)
+          echo "days=$DAY" >> $GITHUB_OUTPUT
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+  notify-on-success:
+    needs: audit
+    runs-on: ubuntu-latest
+    if: success() && needs.audit.outputs.days == '0'
+    steps:
+      - name: Send success email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER_ADDRESS }}
+          server_port: ${{ secrets.SMTP_SERVER_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: 'npm audit passed - ${{ github.repository }}'
+          to: ${{ secrets.TO_EMAILS }}
+          from: ${{ secrets.SMTP_USERNAME }}
+          body: |
+            The npm audit check has passed successfully for repository: ${{ github.repository }}
+
+            View the workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+  notify-on-failure:
+    needs: audit
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - name: Send failure email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER_ADDRESS }}
+          server_port: ${{ secrets.SMTP_SERVER_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: 'npm audit failed - ${{ github.repository }}'
+          to: ${{ secrets.TO_EMAILS }}
+          from: ${{ secrets.SMTP_USERNAME }}
+          body: |
+            The npm audit check has failed for repository: ${{ github.repository }}
+
+            View the workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

@@ -1,0 +1,35 @@
+/* Pie Donut Chart Color Scheme */
+
+/* ============================================
+   CSS Custom Properties (Variables)
+   ============================================ */
+
+:root {
+  /* Investtech Score Colors */
+  --color-neg2: #ff7377; /* Strong Sell */
+  --color-neg1: #ffb156; /* Weak Sell */
+  --color-neutral: #ffda56; /* Neutral */
+  --color-pos1: #90c823; /* Weak Buy */
+  --color-pos2: #83b764; /* Buy */
+
+  /* Industry Sector Colors */
+  --color-sector-bm: #e2c885; /* Basic Materials */
+  --color-sector-co: #e774af; /* Consumer */
+  --color-sector-en: #cc876a; /* Energy */
+  --color-sector-fi: #8c9ae5; /* Finance */
+  --color-sector-hc: #ff8387; /* Healthcare */
+  --color-sector-in: #87afb1; /* Industrials */
+  --color-sector-it: #79cead; /* Information Technology */
+  --color-sector-re: #bba464; /* Real Estate */
+  --color-sector-not-assigned: #c0c0c0; /* Not Assigned */
+
+  /* Correlation Analysis Colors */
+  --color-tableCellPositive-bg: #e8f5e8;
+  --color-tableCellPositive-text: #2e7d2e;
+  --color-tableCellNeutral-bg: #fff9e6;
+  --color-tableCellNeutral-text: #8b6914;
+  --color-tableCellNegative-bg: #f9e6f0;
+  --color-tableCellNegative-text: #b83280;
+  --color-tableCellExtremelyNegative-bg: #f9e6f0;
+  --color-tableCellExtremelyNegative-text: #b83280;
+}

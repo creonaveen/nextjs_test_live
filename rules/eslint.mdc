@@ -1,0 +1,43 @@
+---
+description: ESLint configuration and lint discipline for the codebase
+alwaysApply: true
+---
+
+# ESLint Rules
+
+Follow the project’s ESLint setup and keep code lint-clean. Config: [eslint.config.mjs](../../eslint.config.mjs).
+
+## Project setup
+
+- **Config format:** ESLint flat config (`defineConfig`)
+- **Scope:** `**/*.{js,mjs,cjs,jsx,ts,tsx}`
+- **Base:** `js/recommended`, React recommended (`eslint-plugin-react`)
+- **Globals:** `globals.browser`
+- **React:** `version: 'detect'`
+- **TypeScript:** `@typescript-eslint` parser and plugin are wired; type-aware rules (e.g. `no-floating-promises`, `no-misused-promises`) are enabled for `**/*.{ts,tsx}`. Use strict types and avoid `any`.
+- **Formatting:** Enforced by running `npm run format`; Prettier is not run as part of ESLint.
+
+## Enforced rules
+
+- **complexity:** `['error', 10]` — cyclomatic complexity must be ≤ 10 (see [complexity.mdc](.cursor/rules/complexity.mdc)).
+
+### SOLID-aligned rules (see [solid-principles.mdc](.cursor/rules/solid-principles.mdc))
+
+- **max-lines-per-function:** `['error', 50]` — SRP: keep functions small and single-purpose (blank lines and comments skipped).
+- **max-depth:** `['error', 4]` — limit nesting; supports SRP and readable control flow.
+- **max-params:** `['error', 4]` — SRP/ISP: fewer parameters encourage focused interfaces.
+- **max-statements:** `['warn', 20]` — SRP: avoid functions that do too much.
+- **max-statements-per-line:** `['warn', 2]` — readability; one logical step per line where possible.
+- **max-classes-per-file:** `['warn', 1]` — SRP: one class per file; keep modules single-purpose.
+- **max-lines:** `['error', 250]` — SRP: cap file size (blank lines and comments skipped).
+- **max-nested-callbacks:** `['warn', 4]` — SRP/readability: limit callback nesting; prefer named functions.
+
+
+## Expectations
+
+1. **When writing or editing code:** Respect all enabled ESLint rules. Avoid `any`, unused variables, missing deps in hooks, and React best-practice violations.
+2. **When suggesting changes:** Prefer patterns that satisfy the linter (e.g. early returns, smaller functions, explicit types).
+3. **After edits:** If you introduce or see lint errors, fix them or suggest running `npm run lint` (or `npx eslint .`).
+4. **Consistency:** Keep style and patterns aligned with what ESLint and the existing rules enforce (e.g. complexity limit, React rules).
+
+When suggesting or refactoring code, keep the build and `eslint` run passing.

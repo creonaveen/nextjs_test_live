@@ -1,0 +1,35 @@
+---
+description: Prettier formatting and style consistency for the codebase
+alwaysApply: true
+---
+
+# Prettier Rules
+
+Follow the project’s Prettier setup for consistent formatting. Config: [.prettierrc](../../.prettierrc).
+
+## Project setup
+
+- **Format command:** `npm run format` (runs `prettier --write .`)
+- **Scope:** All files Prettier supports (JS, TS, JSX, TSX, JSON, CSS, MD, etc.)
+- **ESLint:** Formatting is enforced by running `npm run format`. Prettier is not currently run via ESLint (the repo has `eslint-config-prettier` and `eslint-plugin-prettier` available if you choose to integrate them).
+
+## Enforced options (from .prettierrc)
+
+- **semi:** `true`
+- **singleQuote:** `true`
+- **tabWidth:** `2`
+- **trailingComma:** `"es5"`
+- **printWidth:** `100`
+- **bracketSpacing:** `true`
+- **arrowParens:** `"always"`
+- **endOfLine:** `"lf"`
+- **plugins:** `prettier-plugin-tailwindcss` (Tailwind class sorting)
+
+## Expectations
+
+1. **When writing or editing code:** Format output to match the above options (semicolons, single quotes, 2-space indent, LF line endings, 100-char width).
+2. **When suggesting changes:** Prefer patterns that match Prettier’s output (e.g. single quotes, trailing commas where valid).
+3. **After edits:** If formatting drifts, suggest or run `npm run format` (or `npx prettier --write <path>`).
+4. **Consistency:** Keep style aligned with Prettier and the existing codebase; do not introduce formatting that conflicts with .prettierrc.
+
+When suggesting or refactoring code, keep formatting consistent with Prettier and the build/lint pipeline.

@@ -1,6 +1,14 @@
 'use client';
 
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from 'investtech/external-components';
+import {
   Calendar,
   Search,
   Settings,
@@ -14,16 +22,7 @@ import {
   Timer,
   LucideIcon,
 } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
-
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@/components/ui/command';
+import { useState, useEffect } from 'react';
 
 interface CommandItem {
   id: string;
@@ -113,23 +112,31 @@ const commands: CommandItem[] = [
   },
 ];
 
+/**
+ * Demo component for the Command palette.
+ * Shows a searchable command interface with grouped items.
+ *
+ * @returns A demo of the Command component
+ */
 export function CommandDemo() {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
-  const commandRef = useRef<HTMLDivElement>(null);
 
+  // Close when clicking outside or pressing Escape
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (commandRef.current && !commandRef.current.contains(event.target as Node)) {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
         setOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+    if (open) {
+      document.addEventListener('keydown', handleEscape);
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
+      };
+    }
+  }, [open]);
 
   const filteredCommands = commands.filter((command) => {
     const searchLower = search.toLowerCase();
@@ -152,13 +159,14 @@ export function CommandDemo() {
   );
 
   return (
-    <div className="relative" ref={commandRef}>
+    <div className="relative">
       <Command className="rounded-lg border shadow-md">
         <CommandInput
           placeholder="Type a command or search..."
           onFocus={() => setOpen(true)}
           value={search}
           onValueChange={setSearch}
+          aria-label="Search commands"
         />
         {open && (
           <CommandList className="bg-popover text-popover-foreground animate-in fade-in-80 absolute top-full left-0 mt-1 w-full rounded-md border shadow-md">
@@ -172,13 +180,17 @@ export function CommandDemo() {
                       setOpen(false);
                       setSearch('');
                       // Handle command selection here
+                      console.log('Selected command:', item);
                     }}
-                    className="hover:bg-accent hover:text-accent-foreground flex cursor-pointer items-center px-4 py-2 transition-colors"
+                    className="hover:bg-primary-background flex cursor-pointer items-center px-4 py-2 transition-colors hover:text-black dark:hover:text-white"
+                    aria-label={`${item.title}: ${item.description}`}
                   >
-                    <item.icon className="text-primary mr-3 h-5 w-5" />
+                    <item.icon className="text-primary mr-3 h-5 w-5" aria-hidden="true" />
                     <div className="flex flex-col">
                       <span className="font-medium">{item.title}</span>
-                      <span className="text-muted-foreground text-sm">{item.description}</span>
+                      <span className="text-grey-700 dark:text-grey-200 text-sm">
+                        {item.description}
+                      </span>
                     </div>
                   </CommandItem>
                 ))}
@@ -198,8 +210,8 @@ export const commandExampleCode = `import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
-import { useState, useRef, useEffect } from "react"
+} from "@/components/external-components/command"
+import { useState, useEffect } from "react"
 import { Calendar, Search, Settings, LayoutDashboard, User, BarChart, FileText, Calculator, StickyNote, CheckSquare, Timer, LucideIcon } from "lucide-react"
 
 interface CommandItem {
@@ -293,20 +305,22 @@ const commands: CommandItem[] = [
 export function CommandDemo() {
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
-  const commandRef = useRef<HTMLDivElement>(null)
 
+  // Close when pressing Escape
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (commandRef.current && !commandRef.current.contains(event.target as Node)) {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
         setOpen(false)
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
+    if (open) {
+      document.addEventListener('keydown', handleEscape)
+      return () => {
+        document.removeEventListener('keydown', handleEscape)
+      }
     }
-  }, [])
+  }, [open])
 
   const filteredCommands = commands.filter((command) => {
     const searchLower = search.toLowerCase()
@@ -326,13 +340,14 @@ export function CommandDemo() {
   }, {} as Record<string, CommandItem[]>)
 
   return (
-    <div className="relative" ref={commandRef}>
+    <div className="relative">
       <Command className="rounded-lg border shadow-md">
         <CommandInput 
           placeholder="Type a command or search..." 
           onFocus={() => setOpen(true)}
           value={search}
           onValueChange={setSearch}
+          aria-label="Search commands"
         />
         {open && (
           <CommandList className="absolute top-full left-0 w-full mt-1 rounded-md border bg-popover text-popover-foreground shadow-md animate-in fade-in-80">
@@ -346,13 +361,15 @@ export function CommandDemo() {
                       setOpen(false)
                       setSearch('')
                       // Handle command selection here
+                      console.log('Selected command:', item)
                     }}
-                    className="flex items-center px-4 py-2 cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors"
+                    className="flex items-center px-4 py-2 cursor-pointer hover:bg-accent-1 hover:text-black dark:hover:text-white transition-colors"
+                    aria-label={\`\${item.title}: \${item.description}\`}
                   >
-                    <item.icon className="mr-3 h-5 w-5 text-primary" />
+                    <item.icon className="mr-3 h-5 w-5 text-primary" aria-hidden="true" />
                     <div className="flex flex-col">
                       <span className="font-medium">{item.title}</span>
-                      <span className="text-sm text-muted-foreground">{item.description}</span>
+                      <span className="text-sm text-grey-700 dark:text-grey-200">{item.description}</span>
                     </div>
                   </CommandItem>
                 ))}

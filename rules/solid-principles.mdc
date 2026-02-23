@@ -1,0 +1,90 @@
+---
+description: SOLID design principles for classes and modules
+alwaysApply: true
+---
+
+# SOLID Principles
+
+Apply these when designing classes, modules, and components.
+
+## S – Single Responsibility (SRP)
+Each class/module should have one reason to change. One concern per unit.
+
+```typescript
+// ❌ BAD: UserService does auth + persistence + email
+class UserService {
+  login() {}
+  saveToDb() {}
+  sendWelcomeEmail() {}
+}
+
+// ✅ GOOD: Separate responsibilities
+class AuthService { login() {} }
+class UserRepository { save() {} }
+class EmailService { sendWelcome() {} }
+```
+
+## O – Open/Closed (OCP)
+Open for extension, closed for modification. Prefer composition and strategy over editing existing code.
+
+```typescript
+// ❌ BAD: Adding a new format requires changing the function
+function exportData(format: string) {
+  if (format === 'json') return toJson();
+  if (format === 'csv') return toCsv();
+}
+
+// ✅ GOOD: New exporters without changing existing code
+interface Exporter { export(data: Data): string; }
+class JsonExporter implements Exporter { export(data) { return toJson(data); } }
+class CsvExporter implements Exporter { export(data) { return toCsv(data); } }
+```
+
+## L – Liskov Substitution (LSP)
+Subtypes must be substitutable for their base type. Don’t break contracts or throw in cases the base type doesn’t.
+
+```typescript
+// ❌ BAD: Subclass narrows contract (throws where base doesn't)
+class Rectangle { setSize(w: number, h: number) { /* ... */ } }
+class Square extends Rectangle { setSize(w: number, h: number) { if (w !== h) throw new Error(); /* ... */ } }
+
+// ✅ GOOD: Prefer composition when behavior diverges so the contract stays clear
+class Square {
+  constructor(private side: number) {}
+  setSize(s: number) {
+    this.side = s;
+  }
+}
+// Subclass only when fully substitutable; never strengthen preconditions or throw where base doesn't.
+```
+
+## I – Interface Segregation (ISP)
+Prefer small, focused interfaces over one large interface. Callers should not depend on methods they don’t use.
+
+```typescript
+// ❌ BAD: One fat interface
+interface Worker { work(); eat(); sleep(); }
+
+// ✅ GOOD: Segregated interfaces
+interface Workable { work(); }
+interface Eatable { eat(); }
+interface Sleepable { sleep(); }
+```
+
+## D – Dependency Inversion (DIP)
+Depend on abstractions (interfaces, types), not concrete implementations. Inject dependencies.
+
+```typescript
+// ❌ BAD: Direct dependency on concrete class
+class OrderService {
+  private db = new PostgresDatabase();
+}
+
+// ✅ GOOD: Depend on abstraction, inject implementation
+interface OrderRepository { save(order: Order): Promise<void>; }
+class OrderService {
+  constructor(private repo: OrderRepository) {}
+}
+```
+
+When suggesting or refactoring code, favor SOLID: single responsibility, extension over modification, correct substitution, small interfaces, and abstraction-based dependencies.

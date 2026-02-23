@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import { Button } from 'investtech/external-components';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from 'investtech/external-components';
 
 export function HoverCardDemo() {
   return (
@@ -15,7 +15,7 @@ export function HoverCardDemo() {
             <h4 className="text-sm font-semibold">@nextjs</h4>
             <p className="text-sm">The React Framework – created and maintained by @vercel.</p>
             <div className="flex items-center pt-2">
-              <span className="text-muted-foreground text-xs">Joined December 2021</span>
+              <span className="text-grey-700 dark:text-grey-200 text-xs">Joined December 2021</span>
             </div>
           </div>
         </div>
@@ -24,8 +24,8 @@ export function HoverCardDemo() {
   );
 }
 
-export const hoverCardExampleCode = `import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
-import { Button } from "@/components/ui/button"
+export const hoverCardExampleCode = `import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/external-components/hover-card"
+import { Button } from "@/components/external-components/button"
 
 export function HoverCardDemo() {
   return (
@@ -39,7 +39,7 @@ export function HoverCardDemo() {
             <h4 className="text-sm font-semibold">@nextjs</h4>
             <p className="text-sm">The React Framework – created and maintained by @vercel.</p>
             <div className="flex items-center pt-2">
-              <span className="text-muted-foreground text-xs">Joined December 2021</span>
+              <span className="text-grey-700 dark:text-grey-200 text-xs">Joined December 2021</span>
             </div>
           </div>
         </div>

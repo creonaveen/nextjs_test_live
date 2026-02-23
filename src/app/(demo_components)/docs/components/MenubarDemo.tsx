@@ -6,7 +6,7 @@ import {
   MenubarItem,
   MenubarMenu,
   MenubarTrigger,
-} from '@/components/ui/menubar';
+} from 'investtech/external-components';
 
 export function MenubarDemo() {
   return (
@@ -48,7 +48,7 @@ export const menubarExampleCode = `import {
   MenubarItem,
   MenubarMenu,
   MenubarTrigger,
-} from "@/components/ui/menubar"
+} from "@/components/external-components/menubar"
 
 export function MenubarDemo() {
   return (

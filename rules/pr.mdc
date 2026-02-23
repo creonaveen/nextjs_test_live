@@ -1,0 +1,59 @@
+---
+description: Pull request workflow - PR content, pre-PR checklist, and commit conventions
+alwaysApply: true
+---
+
+# Pull Request Rules
+
+When creating or preparing pull requests, follow these conventions for content, pre-PR checks, and commits.
+
+## PR content
+
+- **Title:** Short, imperative. Optionally prefix with type (e.g. `feat: Add Button component`, `fix: Correct modal focus trap`).
+- **Description:** Use a simple template:
+  - **What** changed (bullet list)
+  - **Why** (brief rationale)
+  - **How to test** (steps or commands)
+  - Optionally link to issue/ticket
+
+```markdown
+// BAD: Vague title and empty description
+Title: "Updates"
+Description: (empty)
+
+// GOOD: Clear title and structured description
+Title: feat(button): add disabled state and loading variant
+Description:
+- What: Added `disabled` and `loading` props to Button; updated styles.
+- Why: Needed for form flows and async actions.
+- How to test: Run storybook, toggle disabled/loading on Button stories.
+- Fixes #123
+```
+
+## Pre-PR checklist
+
+Before opening or updating a PR, run:
+
+- `npm run lint` (or `npx eslint .`)
+- `npm run format` (or `npx prettier --write .`)
+- Tests if present (e.g. `npm test`)
+
+Ensure no new lint or format errors. If the AI introduces them, fix or suggest fixes.
+
+## Commit conventions
+
+Use **Conventional Commits**: `type(scope): short description`.
+
+- **Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore` (optionally `perf`, `ci`).
+- **Scope:** Optional; use lowercase.
+- **Subject:** Lowercase, no period at end. One logical change per commit when possible.
+
+```
+// BAD
+git commit -m "fixed stuff"
+git commit -m "WIP"
+
+// GOOD
+git commit -m "fix(button): resolve focus trap in modal"
+git commit -m "feat: add Card component"
+```

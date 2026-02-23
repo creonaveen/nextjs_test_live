@@ -1,6 +1,4 @@
-'use client';
-
-import { Button } from '@/components/ui/button';
+import { Button } from 'investtech/external-components';
 import {
   Card,
   CardContent,
@@ -8,9 +6,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+} from 'investtech/external-components';
+import { Input } from 'investtech/external-components';
+import { Label } from 'investtech/external-components';
 
 export function CardDemo() {
   return (
@@ -71,11 +69,15 @@ export function CardDemo() {
               </p>
               <div className="rounded-lg border p-4">
                 <h4 className="font-medium">Section 1</h4>
-                <p className="text-muted-foreground text-sm">Additional information goes here.</p>
+                <p className="text-grey-700 dark:text-grey-200 text-sm">
+                  Additional information goes here.
+                </p>
               </div>
               <div className="rounded-lg border p-4">
                 <h4 className="font-medium">Section 2</h4>
-                <p className="text-muted-foreground text-sm">More content can be added here.</p>
+                <p className="text-grey-700 dark:text-grey-200 text-sm">
+                  More content can be added here.
+                </p>
               </div>
             </div>
           </CardContent>
@@ -174,7 +176,7 @@ export function CardDemo() {
               </div>
               <div className="rounded-lg border p-4">
                 <h4 className="mb-2 font-medium">Description</h4>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-grey-700 dark:text-grey-200 text-sm">
                   This project involves developing a new feature set for the platform, including
                   user authentication, data visualization, and real-time updates.
                 </p>
@@ -228,8 +230,10 @@ export function CardDemo() {
                 </div>
                 <div>
                   <p className="font-medium">System Update Available</p>
-                  <p className="text-muted-foreground text-sm">A new version is ready to install</p>
-                  <p className="text-muted-foreground text-xs">2 hours ago</p>
+                  <p className="text-grey-700 dark:text-grey-200 text-sm">
+                    A new version is ready to install
+                  </p>
+                  <p className="text-grey-700 dark:text-grey-200 text-xs">2 hours ago</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4 rounded-lg border p-3">
@@ -250,8 +254,10 @@ export function CardDemo() {
                 </div>
                 <div>
                   <p className="font-medium">Backup Completed</p>
-                  <p className="text-muted-foreground text-sm">System backup was successful</p>
-                  <p className="text-muted-foreground text-xs">5 hours ago</p>
+                  <p className="text-grey-700 dark:text-grey-200 text-sm">
+                    System backup was successful
+                  </p>
+                  <p className="text-grey-700 dark:text-grey-200 text-xs">5 hours ago</p>
                 </div>
               </div>
             </div>
@@ -274,10 +280,10 @@ export const cardExampleCode = `import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+} from "@/components/external-components/card"
+import { Button } from "@/components/external-components/button"
+import { Label } from "@/components/external-components/label"
+import { Input } from "@/components/external-components/input"
 
 export function CardDemo() {
   return (
@@ -330,11 +336,11 @@ export function CardDemo() {
             <p>This is a large card that can accommodate more complex content and multiple sections.</p>
             <div className="rounded-lg border p-4">
               <h4 className="font-medium">Section 1</h4>
-              <p className="text-sm text-muted-foreground">Additional information goes here.</p>
+              <p className="text-sm text-grey-700 dark:text-grey-200">Additional information goes here.</p>
             </div>
             <div className="rounded-lg border p-4">
               <h4 className="font-medium">Section 2</h4>
-              <p className="text-sm text-muted-foreground">More content can be added here.</p>
+              <p className="text-sm text-grey-700 dark:text-grey-200">More content can be added here.</p>
             </div>
           </div>
         </CardContent>
@@ -419,7 +425,7 @@ export function CardDemo() {
             </div>
             <div className="rounded-lg border p-4">
               <h4 className="font-medium mb-2">Description</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-grey-700 dark:text-grey-200">
                 This project involves developing a new feature set for the platform, including
                 user authentication, data visualization, and real-time updates.
               </p>
@@ -459,8 +465,8 @@ export function CardDemo() {
               </div>
               <div>
                 <p className="font-medium">System Update Available</p>
-                <p className="text-sm text-muted-foreground">A new version is ready to install</p>
-                <p className="text-xs text-muted-foreground">2 hours ago</p>
+                <p className="text-sm text-grey-700 dark:text-grey-200">A new version is ready to install</p>
+                <p className="text-xs text-grey-700 dark:text-grey-200">2 hours ago</p>
               </div>
             </div>
             <div className="flex items-start space-x-4 rounded-lg border p-3">
@@ -471,8 +477,8 @@ export function CardDemo() {
               </div>
               <div>
                 <p className="font-medium">Backup Completed</p>
-                <p className="text-sm text-muted-foreground">System backup was successful</p>
-                <p className="text-xs text-muted-foreground">5 hours ago</p>
+                <p className="text-sm text-grey-700 dark:text-grey-200">System backup was successful</p>
+                <p className="text-xs text-grey-700 dark:text-grey-200">5 hours ago</p>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@
 import { Check } from 'lucide-react';
 import React from 'react';
 
-import { Badge } from '@/components/ui/badge';
+import { Badge } from 'investtech/external-components';
 import {
   Command,
   CommandEmpty,
@@ -11,8 +11,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/ui/command';
-import { cn } from '@/lib/utils';
+} from 'investtech/external-components';
 
 // Sample data - in real app, this could come from an API
 const frameworks = [
@@ -109,14 +108,13 @@ export function DynamicCommandDemo() {
                   }}
                 >
                   <Check
-                    className={cn(
-                      'mr-2 h-4 w-4',
-                      selected.includes(framework.id) ? 'opacity-100' : 'opacity-0'
-                    )}
+                    className={`mr-2 h-4 w-4 ${selected.includes(framework.id) ? 'opacity-100' : 'opacity-0'}`}
                   />
                   <div className="flex flex-col">
                     <span>{framework.name}</span>
-                    <span className="text-muted-foreground text-sm">{framework.description}</span>
+                    <span className="text-grey-700 dark:text-grey-200 text-sm">
+                      {framework.description}
+                    </span>
                   </div>
                 </CommandItem>
               ))}

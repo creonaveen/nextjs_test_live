@@ -1,5 +1,3 @@
-'use client';
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
+} from 'investtech/external-components';
 
 export function BreadcrumbDemo() {
   return (
@@ -36,7 +34,7 @@ export const breadcrumbExampleCode = `import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from "@/components/external-components/breadcrumb"
 
 export function BreadcrumbDemo() {
   return (
