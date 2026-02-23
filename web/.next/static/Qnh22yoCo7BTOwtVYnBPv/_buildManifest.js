@@ -5,7 +5,12 @@ self.__BUILD_MANIFEST = {
         "source": "/api/:path*"
       }
     ],
-    "beforeFiles": [],
+    "beforeFiles": [
+      {
+        "source": "/web//_next/:path+",
+        "destination": "/web/_next/:path+"
+      }
+    ],
     "fallback": []
   },
   "sortedPages": [

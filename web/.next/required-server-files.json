@@ -1,7 +1,9 @@
 {
   "version": 1,
   "config": {
-    "env": {},
+    "env": {
+      "_next_intl_trailing_slash": "true"
+    },
     "webpack": null,
     "typescript": {
       "ignoreBuildErrors": false
@@ -9,7 +11,7 @@
     "typedRoutes": false,
     "distDir": ".next",
     "cleanDistDir": true,
-    "assetPrefix": "/web",
+    "assetPrefix": "/web/",
     "cacheMaxMemorySize": 52428800,
     "configOrigin": "next.config.ts",
     "useFileSystemPublicRoutes": true,
@@ -42,7 +44,7 @@
         256,
         384
       ],
-      "path": "/web/_next/image",
+      "path": "/web/_next/image/",
       "loader": "default",
       "loaderFile": "",
       "domains": [],
@@ -89,7 +91,7 @@
     },
     "basePath": "/web",
     "sassOptions": {},
-    "trailingSlash": false,
+    "trailingSlash": true,
     "i18n": null,
     "productionBrowserSourceMaps": false,
     "excludeDefaultMomentLocales": true,

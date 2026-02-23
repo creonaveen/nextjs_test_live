@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   output: 'standalone',
   basePath: '/web',
+  assetPrefix: '/web/',
+  trailingSlash: true,
   serverExternalPackages: ['react-hook-form'],
   transpilePackages: ['investtech'],
   turbopack: {
