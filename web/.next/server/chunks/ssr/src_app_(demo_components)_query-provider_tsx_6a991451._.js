@@ -1,3 +1,0 @@
-module.exports=[43688,a=>{"use strict";var b=a.i(87924),c=a.i(54289),d=a.i(37927),e=a.i(72131);function f({children:a}){let[f]=(0,e.useState)(()=>new c.QueryClient({defaultOptions:{queries:{refetchOnMount:!1,refetchOnWindowFocus:!1,retry:!1}}}));return(0,b.jsx)(d.QueryClientProvider,{client:f,children:a})}a.s(["DemoQueryProvider",()=>f])}];
-
-//# sourceMappingURL=src_app_%28demo_components%29_query-provider_tsx_6a991451._.js.map
